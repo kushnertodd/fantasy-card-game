@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game
 {
-    internal class Equipment
+    internal class Equipment : Card
     {
-        public string name;
 
         public Equipment(string name)
         {

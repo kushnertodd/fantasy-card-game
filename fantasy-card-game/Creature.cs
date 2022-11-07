@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game
 {
-    internal class Creature
+    internal class Creature : Card
     {
         public string name;
 

@@ -8,7 +8,6 @@ namespace fantasy_card_game
 {
     internal class Artifact : Card
     {
-        public string name;
 
         public Artifact(string name)
         {

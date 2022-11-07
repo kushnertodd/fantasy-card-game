@@ -65,7 +65,7 @@ namespace fantasy_card_game
                 foreach (Artifact artifact in artifacts)
                 {
                     description += " " + artifact.name;
-                } 
+                }
                 description += " )";
             }
             if (equipments.Count > 0)
@@ -74,7 +74,7 @@ namespace fantasy_card_game
                 foreach (Equipment equipment in equipments)
                 {
                     description += " " + equipment.name;
-                } 
+                }
                 description += ")";
             }
             if (enchantments.Count > 0)

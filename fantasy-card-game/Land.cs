@@ -8,7 +8,6 @@ namespace fantasy_card_game
 {
     internal class Land : Card
     {
-        public string name;
 
         public Land(string name)
         {

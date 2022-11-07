@@ -8,7 +8,6 @@ namespace fantasy_card_game
 {
     internal class Enchantment : Card
     {
-
         public Enchantment(string name)
         {
             this.name = name;

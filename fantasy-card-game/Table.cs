@@ -13,6 +13,12 @@ namespace fantasy_card_game
     {
         public string name;
         List<Board> boards = new List<Board>();
+
+        public Table(string name)
+        {
+            this.name = name;
+        }
+
         public void Add(Board board)
         {
             boards.Add(board);

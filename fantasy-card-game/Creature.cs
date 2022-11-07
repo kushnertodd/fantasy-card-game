@@ -8,7 +8,6 @@ namespace fantasy_card_game
 {
     internal class Creature : Card
     {
-        public string name;
 
         public Creature(string name)
         {

@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace fantasy_card_game_lib
 {
-    internal class Table
+    public class Table
     {
         public string name;
         List<Board> boards = new List<Board>();

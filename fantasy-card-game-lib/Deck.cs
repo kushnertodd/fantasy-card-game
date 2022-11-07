@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace fantasy_card_game_lib
 {
-    internal class Deck : Cards
+    public class Deck : Cards
     {
 
         public Deck()

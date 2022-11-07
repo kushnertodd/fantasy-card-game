@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game_lib
 {
-    internal class Hand : Cards
+    public class Hand : Cards
     {
         public Hand()
         {

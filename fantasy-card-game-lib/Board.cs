@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game_lib
 {
-    internal class Board
+    public class Board
     {
         List<Creature> creatures;
         List<Artifact> artifacts;

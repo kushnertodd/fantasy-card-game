@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game_lib
 {
-    internal class Land : Card
+    public class Land : Card
     {
 
         public Land(string name)

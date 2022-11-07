@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more inform
 
-using fantasy_card_game;
+using fantasy_card_game_lib;
 using System;
 using System.Xml.Linq;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game_lib
 {
-    internal class Card
+    public class Card
     {
         public string name;
         public int power = 0;

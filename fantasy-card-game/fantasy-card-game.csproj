@@ -8,4 +8,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="fantasy-card-game-lib">
+      <HintPath>..\fantasy-card-game-lib\bin\Debug\net6.0\fantasy-card-game-lib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

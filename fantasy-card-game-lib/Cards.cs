@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game_lib
 {
-    internal class Cards
+    public class Cards
     {
         private static Random rng = new Random();
 

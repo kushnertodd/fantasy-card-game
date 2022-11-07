@@ -16,7 +16,7 @@ namespace fantasy_card_game
 
         public string ToString()
         {
-            return "this is artifact " + name;
+            return "artifact " + name;
         }
         public void Describe()
         {

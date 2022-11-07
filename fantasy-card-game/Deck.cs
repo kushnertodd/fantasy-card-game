@@ -7,30 +7,40 @@ using System.Xml.Linq;
 
 namespace fantasy_card_game
 {
-    internal class Deck
+    internal class Deck : Cards
     {
-        List<Card> cards;
+
         public Deck()
         {
-            cards = new List<Card>();
+            this.cards = new List<Card>();
         }
 
-        public void Add(Card card)
+        public Hand Deal(int size)
         {
-            cards.Add(card);
+            Hand hand = new Hand();
+            for (int i = 0; i < size; i++)
+            {
+                hand.Add(cards[0]);
+                cards.RemoveAt(0);
+            }
+            return hand;
         }
         public string ToString()
         {
-            string description = "deck ";
-            if (cards.Count > 0)
-            {
-                foreach (Card card in cards)
-                {
-                    description += " " + card.name;
-                }
-                description += " )";
-            }
+            string description = "deck " + base.ToString();
+            //string description = "deck ";
+            //if (cards.Count > 0)
+            //{
+            //    foreach (Card card in cards)
+            //    {
+            //        description += " " + card.ToString();
+            //    }
+            //}
             return description;
+        }
+        public void Describe()
+        {
+            Console.WriteLine(ToString());
         }
 
     }

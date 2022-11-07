@@ -6,17 +6,29 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game
 {
-    internal class Hand
+    internal class Hand : Cards
     {
-        List<Card> cards;
         public Hand()
         {
             cards = new List<Card>();
         }
 
-        public void Add(Card card)
+        public string ToString()
         {
-            cards.Add(card);
+            string description = "hand " + base.ToString();
+            //string description = "hand ";
+            //if (cards.Count > 0)
+            //{
+            //    foreach (Card card in cards)
+            //    {
+            //        description += " " + card.ToString();
+            //    }
+            //}
+            return description;
+        }
+        public void Describe()
+        {
+            Console.WriteLine(ToString());
         }
     }
 }

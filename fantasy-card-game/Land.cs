@@ -16,7 +16,7 @@ namespace fantasy_card_game
 
         public string ToString()
         {
-            return "this is land " + name;
+            return "Land/" + name;
         }
         public void Describe()
         {

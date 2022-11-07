@@ -27,8 +27,13 @@ internal class HelloWorld
         deck.Add(new Equipment("equipment2"));
         deck.Add(new Enchantment("enchantment1"));
         deck.Add(new Enchantment("enchantment2"));
+        deck.Shuffle();
 
         Player player = new Player("player1", board, deck);
         player.Describe();
+        Hand hand = deck.Deal(3);
+        hand.Describe();
+        deck.Describe();
+
     }
 }

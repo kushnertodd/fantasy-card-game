@@ -16,7 +16,7 @@ namespace fantasy_card_game
 
         public string ToString()
         {
-            return "this is equipment " + name;
+            return "Equipment/" + name;
         }
         public void Describe()
         {

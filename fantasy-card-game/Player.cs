@@ -21,11 +21,13 @@ namespace fantasy_card_game
 
         public string ToString()
         {
-            return "player " + name + " " + board.ToString() + " " + deck.ToString();
+            return "player " + name;
         }
         public void Describe()
         {
             Console.WriteLine(ToString());
+            board.Describe();
+            deck.Describe();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace fantasy_card_game
 
         public string ToString()
         {
-            string description = "this is table " + name + " with boards";
+            string description = "table " + name + " with boards";
             foreach (Board board in boards)
             {
                 description += " " + board;

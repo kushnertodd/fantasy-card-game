@@ -11,6 +11,10 @@ namespace fantasy_card_game
         public string name;
 
 
+        public string ToString()
+        {
+            return this.GetType().Name + "/" + name;
+        }
         public void Describe()
         {
             Console.WriteLine(ToString());

@@ -14,7 +14,7 @@ namespace fantasy_card_game
         }
         public string ToString()
         {
-            return "this is enchantment " + name;
+            return "Enchantment/" + name;
         }
         /*
         public void Describe()

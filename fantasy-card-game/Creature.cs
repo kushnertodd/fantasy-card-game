@@ -16,7 +16,7 @@ namespace fantasy_card_game
 
         public string ToString()
         {
-            return "this is creature " + name;
+            return "Creature/" + name;
         }
         public void Describe()
         {

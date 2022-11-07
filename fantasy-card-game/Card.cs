@@ -9,11 +9,12 @@ namespace fantasy_card_game
     internal class Card
     {
         public string name;
-
+        public int power = 0;
+        public int strength = 0;
 
         public string ToString()
         {
-            return this.GetType().Name + "/" + name;
+            return this.GetType().Name + ":" + name + "(" + strength + "/" + power + ")";
         }
         public void Describe()
         {

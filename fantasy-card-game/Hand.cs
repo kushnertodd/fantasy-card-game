@@ -16,14 +16,6 @@ namespace fantasy_card_game
         public string ToString()
         {
             string description = "hand " + base.ToString();
-            //string description = "hand ";
-            //if (cards.Count > 0)
-            //{
-            //    foreach (Card card in cards)
-            //    {
-            //        description += " " + card.ToString();
-            //    }
-            //}
             return description;
         }
         public void Describe()

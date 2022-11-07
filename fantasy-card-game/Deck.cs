@@ -28,14 +28,6 @@ namespace fantasy_card_game
         public string ToString()
         {
             string description = "deck " + base.ToString();
-            //string description = "deck ";
-            //if (cards.Count > 0)
-            //{
-            //    foreach (Card card in cards)
-            //    {
-            //        description += " " + card.ToString();
-            //    }
-            //}
             return description;
         }
         public void Describe()

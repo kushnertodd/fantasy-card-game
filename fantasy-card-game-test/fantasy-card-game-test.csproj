@@ -16,4 +16,10 @@
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="fantasy-card-game-lib">
+      <HintPath>..\fantasy-card-game-lib\bin\Debug\net6.0\fantasy-card-game-lib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

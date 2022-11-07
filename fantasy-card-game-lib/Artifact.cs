@@ -18,9 +18,9 @@ namespace fantasy_card_game_lib
         {
             return base.ToString();
         }
-        public void Describe()
+        public override void Describe(string prefix = "")
         {
-            Console.WriteLine(ToString());
+            Console.WriteLine(prefix + ToString());
         }
     }
 }

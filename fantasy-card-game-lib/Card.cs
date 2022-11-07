@@ -14,9 +14,9 @@ namespace fantasy_card_game_lib
         {
             return this.GetType().Name + ":" + name;
         }
-        public void Describe()
+        public virtual void Describe(string prefix = "")
         {
-            Console.WriteLine(ToString());
+            Console.WriteLine(prefix + ToString());
         }
     }
 }

@@ -34,9 +34,9 @@ namespace fantasy_card_game_lib
                 (isCommander || isPlanesWalker ? "/" + CreatureType() : "") +
                 "(" + strength + "/" + power + ")";
         }
-        public void Describe()
+        public override void Describe(string prefix = "")
         {
-            Console.WriteLine(ToString());
+            Console.WriteLine(prefix + ToString());
         }
     }
 }

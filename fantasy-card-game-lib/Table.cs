@@ -40,16 +40,16 @@ namespace fantasy_card_game_lib
 
         public string ToString()
         {
-            string description = "table " + name + " with boards";
+            string description = name + " boards:";
             foreach (Board board in boards)
             {
                 description += " " + board.ToString();
             }
             return description;
         }
-        public void Describe()
+        public void Describe(string prefix = "")
         {
-            Console.WriteLine(ToString());
+            Console.WriteLine(prefix + ToString());
         }
     }
 }

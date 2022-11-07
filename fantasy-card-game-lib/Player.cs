@@ -38,11 +38,11 @@ namespace fantasy_card_game_lib
         }
         public string ToString()
         {
-            return "player " + name;
+            return name;
         }
-        public void Describe()
+        public void Describe(string prefix = "")
         {
-            Console.WriteLine(ToString());
+            Console.WriteLine(prefix + ToString());
             board.Describe();
             deck.Describe();
         }

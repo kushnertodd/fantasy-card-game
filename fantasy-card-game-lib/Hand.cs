@@ -15,12 +15,13 @@ namespace fantasy_card_game_lib
 
         public string ToString()
         {
-            string description = "hand " + base.ToString();
+            string description = base.ToString();
             return description;
         }
-        public void Describe()
+        public override void Describe(string prefix = "")
         {
-            Console.WriteLine(ToString());
+            Console.WriteLine(prefix + ToString());
         }
+
     }
 }

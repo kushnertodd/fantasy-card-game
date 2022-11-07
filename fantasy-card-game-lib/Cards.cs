@@ -44,5 +44,9 @@ namespace fantasy_card_game_lib
             }
             return description;
         }
+        public virtual void Describe(string prefix = "")
+        {
+            Console.WriteLine(prefix + ToString());
+        }
     }
 }

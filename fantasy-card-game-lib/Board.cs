@@ -49,10 +49,10 @@ namespace fantasy_card_game_lib
 
         public string ToString()
         {
-            string description = "board " + name;
+            string description = name;
             if (creatures.Count > 0)
             {
-                description += " creatures (";
+                description += " creatures: (";
                 foreach (Creature creature in creatures)
                 {
                     description += " " + creature.ToString();
@@ -61,7 +61,7 @@ namespace fantasy_card_game_lib
             }
             if (artifacts.Count > 0)
             {
-                description += " artifacts (";
+                description += " artifacts: (";
                 foreach (Artifact artifact in artifacts)
                 {
                     description += " " + artifact.ToString();
@@ -70,7 +70,7 @@ namespace fantasy_card_game_lib
             }
             if (equipments.Count > 0)
             {
-                description += " equipments (";
+                description += " equipments: (";
                 foreach (Equipment equipment in equipments)
                 {
                     description += " " + equipment.name;
@@ -79,7 +79,7 @@ namespace fantasy_card_game_lib
             }
             if (enchantments.Count > 0)
             {
-                description += " enchantments (";
+                description += " enchantments: (";
                 foreach (Enchantment enchantment in enchantments)
                 {
                     description += " " + enchantment.name;
@@ -88,7 +88,7 @@ namespace fantasy_card_game_lib
             }
             if (lands.Count > 0)
             {
-                description += " with creatures (";
+                description += " lands: (";
                 foreach (Land land in lands)
                 {
                     description += " " + land.name;
@@ -97,9 +97,9 @@ namespace fantasy_card_game_lib
             }
             return description;
         }
-        public void Describe()
+        public void Describe(string prefix = "")
         {
-            Console.WriteLine(ToString());
+            Console.WriteLine(prefix + ToString());
         }
     }
 }

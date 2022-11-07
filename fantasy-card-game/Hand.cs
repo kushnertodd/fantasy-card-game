@@ -14,7 +14,7 @@ namespace fantasy_card_game
             cards = new List<Card>();
         }
 
-            public void Add(Card card)
+        public void Add(Card card)
         {
             cards.Add(card);
         }

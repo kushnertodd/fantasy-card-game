@@ -43,7 +43,7 @@ namespace fantasy_card_game_lib
             string description = "table " + name + " with boards";
             foreach (Board board in boards)
             {
-                description += " " + board;
+                description += " " + board.ToString();
             }
             return description;
         }

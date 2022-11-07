@@ -21,9 +21,18 @@ namespace fantasy_card_game_lib
             this.strength = strength;
         }
 
+        public string CreatureType()
+        {
+            if (this.isCommander) return "Commander";
+            if (this.isPlanesWalker) return "PlanesWalker";
+            return "";
+        }
+
         public override string ToString()
         {
-            return base.ToString() + "(" + strength + "/" + power + ")";
+            return base.ToString() +
+                (isCommander || isPlanesWalker ? "/" + CreatureType() : "") +
+                "(" + strength + "/" + power + ")";
         }
         public void Describe()
         {

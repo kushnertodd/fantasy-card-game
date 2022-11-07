@@ -8,19 +8,19 @@ internal class HelloWorld
 {
     static void Main()
     {
-        Board board = new Board("board1");
-        board.Add(new Creature("creature1"));
-        board.Add(new Creature("creature2"));
-        board.Add(new Artifact("artifact1"));
-        board.Add(new Artifact("artifact2"));
-        board.Add(new Equipment("equipment1"));
-        board.Add(new Equipment("equipment2"));
-        board.Add(new Enchantment("enchantment1"));
-        board.Add(new Enchantment("enchantment2"));
+        Board board1 = new Board("board1");
+        board1.Add(new Creature("creature1"));
+        board1.Add(new Creature("creature2"));
+        board1.Add(new Artifact("artifact1"));
+        board1.Add(new Artifact("artifact2"));
+        board1.Add(new Equipment("equipment1"));
+        board1.Add(new Equipment("equipment2"));
+        board1.Add(new Enchantment("enchantment1"));
+        board1.Add(new Enchantment("enchantment2"));
 
         Deck deck = new Deck();
-        deck.Add(new Creature("creature1"));
-        deck.Add(new Creature("creature2"));
+        deck.Add(new Creature("creature1", isCommander:true));
+        deck.Add(new Creature("creature2", isPlanesWalter:true));
         deck.Add(new Artifact("artifact1"));
         deck.Add(new Artifact("artifact2"));
         deck.Add(new Equipment("equipment1"));
@@ -28,12 +28,18 @@ internal class HelloWorld
         deck.Add(new Enchantment("enchantment1"));
         deck.Add(new Enchantment("enchantment2"));
         deck.Shuffle();
+        Board board2 = new Board("board2");
+        Table table = new Table("table1");
+        table.Add(board1);
+        table.Add(board2);
+        table.Describe();
 
-        Player player = new Player("player1", board, deck);
+        Player player = new Player("player1", board1, deck);
         player.Describe();
         Hand hand = deck.Deal(3);
         hand.Describe();
         deck.Describe();
-
+        Creature commander1 = player.SelectCommander(deck, "creature1");
+        commander1.Describe();
     }
 }

@@ -10,16 +10,18 @@ namespace fantasy_card_game
     {
         public string name;
         public Board board;
+        public Deck deck;
 
-        public Player(string name, Board board)
+        public Player(string name, Board board, Deck deck)
         {
             this.name = name;
             this.board = board;
+            this.deck = deck;
         }
 
         public string ToString()
         {
-            return "player " + name + " " + board.ToString();
+            return "player " + name + " " + board.ToString() + " " + deck.ToString();
         }
         public void Describe()
         {

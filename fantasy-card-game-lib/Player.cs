@@ -19,6 +19,10 @@ namespace fantasy_card_game_lib
             this.deck = deck;
         }
 
+        public void SelectBoard(Table table, string name)
+        {
+            board = table.SelectBoard(name);
+        }
         public string ToString()
         {
             return "player " + name;

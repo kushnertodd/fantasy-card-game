@@ -55,7 +55,7 @@ namespace fantasy_card_game_lib
                 description += " creatures (";
                 foreach (Creature creature in creatures)
                 {
-                    description += " " + creature.name;
+                    description += " " + creature.ToString();
                 }
                 description += " )";
             }
@@ -64,7 +64,7 @@ namespace fantasy_card_game_lib
                 description += " artifacts (";
                 foreach (Artifact artifact in artifacts)
                 {
-                    description += " " + artifact.name;
+                    description += " " + artifact.ToString();
                 }
                 description += " )";
             }

@@ -14,9 +14,9 @@ namespace fantasy_card_game_lib
             this.name = name;
         }
 
-        public string ToString()
+        public override string ToString()
         {
-            return "artifact " + name;
+            return base.ToString();
         }
         public void Describe()
         {

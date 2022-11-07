@@ -12,7 +12,7 @@ namespace fantasy_card_game_lib
     public class Table
     {
         public string name;
-        List<Board> boards = new List<Board>();
+        public List<Board> boards = new List<Board>();
 
         public Table(string name)
         {
@@ -22,6 +22,20 @@ namespace fantasy_card_game_lib
         public void Add(Board board)
         {
             boards.Add(board);
+        }
+
+        public Board SelectBoard(string name)
+        {
+            Board result = null;
+            foreach (Board board in boards)
+            {
+                if (board.name == name)
+                {
+                    result = board;
+                    break;
+                }
+            }
+            return result;
         }
 
         public string ToString()

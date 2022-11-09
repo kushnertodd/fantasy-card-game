@@ -49,6 +49,10 @@ namespace fantasy_card_game_lib
         {
             lands.Add(land);
         }
+        public void Add(Instant instant)
+        {
+            instants.Add(instant);
+        }
         public void Add(Planeswalker planeswalker)
         {
             planeswalkers.Add(planeswalker);

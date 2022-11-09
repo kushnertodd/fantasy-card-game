@@ -9,9 +9,14 @@ namespace fantasy_card_game_lib
     public class Player
     {
         public string Name { get; set; }
+        public int LifePoints { get; set; }
+        public int CommanderDamage { get; set; }
+
         public Player(string name)
         {
             Name = name;
+            LifePoints = 40;
+            CommanderDamage = 0;
         }
         public Planeswalker SelectCommander(Cards cards, string name)
         {

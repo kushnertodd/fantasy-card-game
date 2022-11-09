@@ -9,14 +9,10 @@ namespace fantasy_card_game_lib
     public class Player
     {
         public string Name { get; set; }
-        public Board board;
-        public Deck deck;
 
-        public Player(string name, Board board, Deck deck)
+        public Player(string name)
         {
             Name = name;
-            this.board = board;
-            this.deck = deck;
         }
 
         public void SelectBoard(Table table, string name)

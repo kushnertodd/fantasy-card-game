@@ -14,9 +14,12 @@ namespace fantasy_card_game_lib
         List<Equipment> equipments;
         List<Enchantment> enchantments;
         List<Land> lands;
+        public Deck deck;
+        public Player player;
         public string Name { get; set; }
+        public Board board;
 
-        public Board(string name)
+        public Board(string name, Board board, Deck deck)
         {
             Name = name;
             creatures = new List<Creature>();
@@ -24,6 +27,8 @@ namespace fantasy_card_game_lib
             equipments = new List<Equipment>();
             enchantments = new List<Enchantment>();
             lands = new List<Land>();
+            this.board = board;
+            this.deck = deck;
         }
 
         public void Add(Creature creature)

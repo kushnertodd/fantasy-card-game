@@ -26,15 +26,7 @@ namespace fantasy_card_game_lib
 
         public Board SelectBoard(string name)
         {
-            Board result = null;
-            foreach (Board board in boards)
-            {
-                if (board.Name == name)
-                {
-                    result = board;
-                    break;
-                }
-            }
+            Board result = boards.Find(board => board.Name == name);
             return result;
         }
 

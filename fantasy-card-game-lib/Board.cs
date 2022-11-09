@@ -9,7 +9,7 @@ namespace fantasy_card_game_lib
 {
     public class Board
     {
-        List<Creature> creatures = new List<Creature>();
+        List<Planeswalker> planeswalkers = new List<Planeswalker>();
         List<Artifact> artifacts = new List<Artifact>();
         List<Equipment> equipments = new List<Equipment>();
         List<Enchantment> enchantments = new List<Enchantment>();
@@ -25,9 +25,9 @@ namespace fantasy_card_game_lib
             this.deck = deck;
         }
 
-        public void Add(Creature creature)
+        public void Add(Planeswalker planeswalker)
         {
-            creatures.Add(creature);
+            planeswalkers.Add(planeswalker);
         }
         public void Add(Artifact artifact)
         {
@@ -49,12 +49,12 @@ namespace fantasy_card_game_lib
         public override string ToString()
         {
             string description = Name;
-            if (creatures.Count > 0)
+            if (planeswalkers.Count > 0)
             {
-                description += " creatures: (";
-                foreach (Creature creature in creatures)
+                description += " planeswalkers: (";
+                foreach (Planeswalker planeswalker in planeswalkers)
                 {
-                    description += " " + creature.ToString();
+                    description += " " + planeswalker.ToString();
                 }
                 description += " )";
             }

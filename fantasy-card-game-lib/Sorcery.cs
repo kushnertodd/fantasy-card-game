@@ -10,7 +10,7 @@ namespace fantasy_card_game_lib
     {
 
         public Sorcery(string name) :
-                        base(name, isPermanent: false, isSpell: true, canTap: false)
+                        base(name, isSpell: true)
         {
 
         }

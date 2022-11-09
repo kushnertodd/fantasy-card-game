@@ -11,9 +11,9 @@ namespace fantasy_card_game_lib
     {
         public Mana mana;
         public Land(string name, Mana mana) :
-                        base(name, isPermanent: true, isSpell: false, canTap: true)
+                        base(name, isPermanent: true, canTap: true)
         {
-            this.Name = name;
+            Name = name;
             this.mana = mana;
         }
 

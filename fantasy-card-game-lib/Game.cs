@@ -12,7 +12,6 @@ namespace fantasy_card_game_lib
     public class Game
     {
         public Players players = new Players();
-
         public Game() { }
         public void Add(Player player)
         {

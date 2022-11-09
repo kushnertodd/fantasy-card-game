@@ -6,28 +6,23 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game_lib
 {
-    public class Creature : Card
+    public class Planeswalker : Card
     {
-        public bool IsCommander { get; set; }
         public int Power { get; set; }
         public int Toughness { get; set; }
-        public Creature(string name,
-            bool isCommander = false,
+
+        public Planeswalker(string name,
             int power = 0,
             int toughness = 0
-            ) : base(name, canAttack: true, isPermanent: true, isSpell: true)
+            ) : base(name, canBeAttacked: true, isPermanent: true, isSpell: true)
         {
             Name = name;
-            IsCommander = isCommander;
             Power = power;
             Toughness = toughness;
         }
-
         public override string ToString()
         {
-            return base.ToString() +
-                (IsCommander ? ":Commander" : "") +
-                "(" + Power + "/" + Toughness + ")";
+            return base.ToString();
         }
     }
 }

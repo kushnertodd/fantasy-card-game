@@ -13,13 +13,13 @@ namespace fantasy_card_game_lib
         {
             Name = name;
         }
-        public Creature SelectCommander(Cards cards, string name)
+        public Planeswalker SelectCommander(Cards cards, string name)
         {
             foreach (Card card in cards.cards)
             {
-                if (card.GetType() == typeof(Creature) && card.Name == name)
+                if (card.GetType() == typeof(Planeswalker) && card.Name == name)
                 {
-                    return (Creature)card;
+                    return (Planeswalker)card;
                 }
             }
             return null!;

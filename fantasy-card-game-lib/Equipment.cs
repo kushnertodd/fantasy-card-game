@@ -10,7 +10,7 @@ namespace fantasy_card_game_lib
     {
 
         public Equipment(string name) :
-                        base(name, isPermanent: true, isSpell: false, canTap: false)
+                        base(name, isPermanent: true, isSpell: true)
         {
             Name = name;
         }

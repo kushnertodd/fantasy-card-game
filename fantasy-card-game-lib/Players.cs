@@ -17,9 +17,7 @@ namespace fantasy_card_game_lib
         }
         public Player Select(string name)
         {
-            if (players == null) return null;
-            else
-                return players.Find(player => player.Name == name);
+            return players.Find(player => player.Name == name)!;
         }
         public string ToString(string prefix = "", string separator = " ", string suffix = "")
         {

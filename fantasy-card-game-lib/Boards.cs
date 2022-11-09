@@ -17,9 +17,7 @@ namespace fantasy_card_game_lib
         }
         public Board Select(string name)
         {
-            if (boards == null) return null;
-            else
-                return boards.Find(board => board.Name == name);
+            return boards.Find(board => board.Name == name)!;
         }
         public string ToString(string prefix = "", string separator = " ", string suffix = "")
         {

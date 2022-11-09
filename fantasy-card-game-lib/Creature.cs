@@ -8,33 +8,33 @@ namespace fantasy_card_game_lib
 {
     public class Creature : Card
     {
-        public bool isCommander = false;
-        public bool isPlanesWalker = false;
-        public bool canSwing = true;
-        public int power = 0;
-        public int strength = 0;
-        public Creature(string name, bool isCommander = false, bool isPlanesWalter = false, int power = 0, int strength = 0) :
+        public bool IsCommander { get; set; }
+        public bool IsPlanesWalker { get; set; }
+        public bool CanSwing { get; set; }
+        public int Power { get; set; }
+        public int Toughness { get; set; }
+        public Creature(string name, bool isCommander = false, bool isPlanesWalter = false, int power = 0, int toughness = 0) :
                         base(name, isPermanent: true, isSpell: false, canTap: false)
         {
-            this.Name = name;
-            this.isCommander = isCommander;
-            this.isPlanesWalker = isPlanesWalter;
-            this.power = power;
-            this.strength = strength;
+            Name = name;
+            IsCommander = isCommander;
+            IsPlanesWalker = isPlanesWalter;
+            Power = power;
+            Toughness = toughness;
         }
 
         public string CreatureType()
         {
-            if (this.isCommander) return "Commander";
-            if (this.isPlanesWalker) return "PlanesWalker";
+            if (IsCommander) return "Commander";
+            if (IsPlanesWalker) return "PlanesWalker";
             return "";
         }
 
         public override string ToString()
         {
             return base.ToString() +
-                (isCommander || isPlanesWalker ? "/" + CreatureType() : "") +
-                "(" + strength + "/" + power + ")";
+                (IsCommander || IsPlanesWalker ? "/" + CreatureType() : "") +
+                "(" + Power + "/" + Toughness + ")";
         }
     }
 }

@@ -12,12 +12,12 @@ namespace fantasy_card_game_lib
 {
     public class Mana
     {
-        public enum Color { Colorless, White, Red, Blue, Green, Black }
+        public enum Color { Colorless, White, Green, Blue, Red, Black }
         public HashSet<Color> colors = new HashSet<Color>();
 
         public Mana() { }
 
-        // call with: Mana mana = new Mana(new int[] { Red, Blue, Green });
+        // call with: Mana mana = new Mana(new Color[] { Mana.Color.Red, Mana.Color.Blue, Mana.Color.Green });
         public static Mana createMana(Color[] colors)
         {
             Mana mana = new Mana();

@@ -22,7 +22,7 @@ namespace fantasy_card_game_lib
                     return (Creature)card;
                 }
             }
-            return null;
+            return null!;
         }
         public override string ToString()
         {

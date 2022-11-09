@@ -10,12 +10,14 @@ namespace fantasy_card_game_lib
     public class Card
     {
         public string Name { get; set; }
+        public int Cost { get; set; }
         public bool IsPermanent { get; set; }
         public bool IsSpell { get; set; }
         public bool CanTap { get; set; }
-        public Card(string name, bool isPermanent = false, bool isSpell = false, bool canTap = false)
+        public Card(string name, int cost = 0,  bool isPermanent = false, bool isSpell = false, bool canTap = false)
         {
             Name = name;
+            Cost = cost;
             IsPermanent = isPermanent;
             IsSpell = isSpell;
             CanTap = canTap;

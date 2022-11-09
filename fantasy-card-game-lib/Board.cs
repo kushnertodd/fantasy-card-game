@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,11 +10,14 @@ namespace fantasy_card_game_lib
 {
     public class Board
     {
-        List<Planeswalker> planeswalkers = new List<Planeswalker>();
         List<Artifact> artifacts = new List<Artifact>();
+        List<Creature> creatures = new List<Creature>();
         List<Equipment> equipments = new List<Equipment>();
         List<Enchantment> enchantments = new List<Enchantment>();
+        List<Instant> instants = new List<Instant>();
         List<Land> lands = new List<Land>();
+        List<Planeswalker> planeswalkers = new List<Planeswalker>();
+        List<Sorcery> sorceries = new List<Sorcery>();
         public Player player;
         public Deck deck;
         public string Name { get; set; }
@@ -25,13 +29,13 @@ namespace fantasy_card_game_lib
             this.deck = deck;
         }
 
-        public void Add(Planeswalker planeswalker)
-        {
-            planeswalkers.Add(planeswalker);
-        }
         public void Add(Artifact artifact)
         {
             artifacts.Add(artifact);
+        }
+        public void Add(Creature creature)
+        {
+            creatures.Add(creature);
         }
         public void Add(Equipment equipment)
         {
@@ -45,53 +49,52 @@ namespace fantasy_card_game_lib
         {
             lands.Add(land);
         }
+        public void Add(Planeswalker planeswalker)
+        {
+            planeswalkers.Add(planeswalker);
+        }
+        public void Add(Sorcery sorcery)
+        {
+            sorceries.Add(sorcery);
+        }
 
         public override string ToString()
         {
             string description = Name;
-            if (planeswalkers.Count > 0)
-            {
-                description += " planeswalkers: (";
-                foreach (Planeswalker planeswalker in planeswalkers)
-                {
-                    description += " " + planeswalker.ToString();
-                }
-                description += " )";
-            }
             if (artifacts.Count > 0)
             {
-                description += " artifacts: (";
-                foreach (Artifact artifact in artifacts)
-                {
-                    description += " " + artifact.ToString();
-                }
+                description += " artifacts: (" +
+                    ListUtilities<Artifact>.ToString(artifacts);
+                description += " )";
+            }
+            if (creatures.Count > 0)
+            {
+                description += " creatures: (" +
+                    ListUtilities<Creature>.ToString(creatures);
+                description += " )";
+            }
+            if (enchantments.Count > 0)
+            {
+                description += " enchantments: (";
+                ListUtilities<Enchantment>.ToString(enchantments);
                 description += " )";
             }
             if (equipments.Count > 0)
             {
                 description += " equipments: (";
-                foreach (Equipment equipment in equipments)
-                {
-                    description += " " + equipment.Name;
-                }
+                ListUtilities<Equipment>.ToString(equipments);
                 description += ")";
             }
-            if (enchantments.Count > 0)
+            if (instants.Count > 0)
             {
-                description += " enchantments: (";
-                foreach (Enchantment enchantment in enchantments)
-                {
-                    description += " " + enchantment.Name;
-                }
-                description += " )";
+                description += " instants: (";
+                ListUtilities<Instant>.ToString(instants);
+                description += ")";
             }
             if (lands.Count > 0)
             {
                 description += " lands: (";
-                foreach (Land land in lands)
-                {
-                    description += " " + land.Name;
-                }
+                ListUtilities<Land>.ToString(lands);
                 description += " )";
             }
             return description;

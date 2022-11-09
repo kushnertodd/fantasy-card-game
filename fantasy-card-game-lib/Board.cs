@@ -9,25 +9,19 @@ namespace fantasy_card_game_lib
 {
     public class Board
     {
-        List<Creature> creatures;
-        List<Artifact> artifacts;
-        List<Equipment> equipments;
-        List<Enchantment> enchantments;
-        List<Land> lands;
-        public Deck deck;
+        List<Creature> creatures = new List<Creature>();
+        List<Artifact> artifacts = new List<Artifact>();
+        List<Equipment> equipments = new List<Equipment>();
+        List<Enchantment> enchantments = new List<Enchantment>();
+        List<Land> lands = new List<Land>();
         public Player player;
+        public Deck deck;
         public string Name { get; set; }
-        public Board board;
 
-        public Board(string name, Board board, Deck deck)
+        public Board(string name, Player player, Deck deck)
         {
             Name = name;
-            creatures = new List<Creature>();
-            artifacts = new List<Artifact>();
-            equipments = new List<Equipment>();
-            enchantments = new List<Enchantment>();
-            lands = new List<Land>();
-            this.board = board;
+            this.player = player;
             this.deck = deck;
         }
 
@@ -52,7 +46,7 @@ namespace fantasy_card_game_lib
             lands.Add(land);
         }
 
-        public string toString()
+        public override string ToString()
         {
             string description = Name;
             if (creatures.Count > 0)
@@ -60,7 +54,7 @@ namespace fantasy_card_game_lib
                 description += " creatures: (";
                 foreach (Creature creature in creatures)
                 {
-                    description += " " + creature.toString();
+                    description += " " + creature.ToString();
                 }
                 description += " )";
             }
@@ -69,7 +63,7 @@ namespace fantasy_card_game_lib
                 description += " artifacts: (";
                 foreach (Artifact artifact in artifacts)
                 {
-                    description += " " + artifact.toString();
+                    description += " " + artifact.ToString();
                 }
                 description += " )";
             }
@@ -102,9 +96,9 @@ namespace fantasy_card_game_lib
             }
             return description;
         }
-        public void Describe(string prefix = "")
+        public void Describe()
         {
-            Console.WriteLine(prefix + toString());
+            Console.WriteLine(ToString());
         }
     }
 }

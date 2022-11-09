@@ -9,38 +9,24 @@ namespace fantasy_card_game_lib
 {
     public class Card
     {
-        private string name;
-        public string Name
+        public string Name { get; set; }
+        public bool IsPermanent { get; set; }
+        public bool IsSpell { get; set; }
+        public bool CanTap { get; set; }
+        public Card(string name, bool isPermanent = false, bool isSpell = false, bool canTap = false)
         {
-            get => name;
-            set => name = value;
+            Name = name;
+            IsPermanent = isPermanent;
+            IsSpell = isSpell;
+            CanTap = canTap;
         }
-        private bool isPermanent = false;
-        public bool IsPermanent
-        {
-            get => isPermanent;
-            set => isPermanent = value;
-        }
-        private bool isSpell = false;
-        public bool IsSpell
-        {
-            get => isSpell;
-            set => isSpell = value;
-        }
-        private bool isTappable = false;
-        public bool IsTappable
-        {
-            get => isTappable;
-            set => isTappable = value;
-        }
-
-        public virtual string toString()
+        public override string ToString()
         {
             return this.GetType().Name + ":" + Name;
         }
-        public virtual void Describe(string prefix = "")
+        public virtual void Describe()
         {
-            Console.WriteLine(prefix + toString());
+            Console.WriteLine(ToString());
         }
     }
 }

@@ -9,18 +9,10 @@ namespace fantasy_card_game_lib
     public class Artifact : Card
     {
 
-        public Artifact(string name)
+        public Artifact(string name) :
+                        base(name, isPermanent: true, isSpell: false, canTap: true)
         {
-            Name = name;
-        }
 
-        public override string toString()
-        {
-            return base.toString();
-        }
-        public override void Describe(string prefix = "")
-        {
-            Console.WriteLine(prefix + toString());
         }
     }
 }

@@ -9,18 +9,10 @@ namespace fantasy_card_game_lib
     public class Equipment : Card
     {
 
-        public Equipment(string name)
+        public Equipment(string name) :
+                        base(name, isPermanent: true, isSpell: false, canTap: false)
         {
             Name = name;
-        }
-
-        public override string toString()
-        {
-            return base.toString();
-        }
-        public override void Describe(string prefix = "")
-        {
-            Console.WriteLine(prefix + toString());
         }
 
     }

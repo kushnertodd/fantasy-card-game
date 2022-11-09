@@ -10,21 +10,24 @@ namespace fantasy_card_game_lib
     {
         private static Random rng = new Random();
 
-        public List<Card> cards;
+        public List<Card> cards = new List<Card>();
 
         /**
          * https://www.delftstack.com/howto/csharp/shuffle-a-list-in-csharp/
          */
-        public void Shuffle()
+        public void Shuffle(int count = 1)
         {
-            int n = cards.Count;
-            while (n > 1)
+            for (int i = 0; i < count; i++)
             {
-                n--;
-                int k = rng.Next(n + 1);
-                Card value = cards[k];
-                cards[k] = cards[n];
-                cards[n] = value;
+                int n = cards.Count;
+                while (n > 1)
+                {
+                    n--;
+                    int k = rng.Next(n + 1);
+                    Card value = cards[k];
+                    cards[k] = cards[n];
+                    cards[n] = value;
+                }
             }
         }
         public void Add(Card card)
@@ -32,21 +35,13 @@ namespace fantasy_card_game_lib
             cards.Add(card);
         }
 
-        public virtual string toString()
+        public string ToString(string prefix = "", string separator = " ", string suffix = "")
         {
-            string description = "";
-            if (cards.Count > 0)
-            {
-                foreach (Card card in cards)
-                {
-                    description += " " + card.toString();
-                }
-            }
-            return description;
+            return ListUtilities<Card>.ToString(cards, prefix, separator, suffix);
         }
         public virtual void Describe(string prefix = "")
         {
-            Console.WriteLine(prefix + toString());
+            Console.WriteLine(prefix + ToString());
         }
     }
 }

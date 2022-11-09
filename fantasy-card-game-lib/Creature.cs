@@ -10,9 +10,11 @@ namespace fantasy_card_game_lib
     {
         public bool isCommander = false;
         public bool isPlanesWalker = false;
+        public bool canSwing = true;
         public int power = 0;
         public int strength = 0;
-        public Creature(string name, bool isCommander = false, bool isPlanesWalter = false, int power = 0, int strength = 0)
+        public Creature(string name, bool isCommander = false, bool isPlanesWalter = false, int power = 0, int strength = 0) :
+                        base(name, isPermanent: true, isSpell: false, canTap: false)
         {
             this.Name = name;
             this.isCommander = isCommander;
@@ -28,15 +30,11 @@ namespace fantasy_card_game_lib
             return "";
         }
 
-        public override string toString()
+        public override string ToString()
         {
-            return base.toString() +
+            return base.ToString() +
                 (isCommander || isPlanesWalker ? "/" + CreatureType() : "") +
                 "(" + strength + "/" + power + ")";
-        }
-        public override void Describe(string prefix = "")
-        {
-            Console.WriteLine(prefix + toString());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,23 +9,21 @@ namespace fantasy_card_game_lib
 {
     public class Land : Card
     {
-        Mana mana;
-        public Land(string name)
+        public Mana mana;
+        public Land(string name, Mana mana) :
+                        base(name, isPermanent: true, isSpell: false, canTap: true)
         {
-            Name = name;
+            this.Name = name;
+            this.mana = mana;
         }
 
         void Add(Mana.Color color)
         {
             mana.Add(color);
         }
-        public override string toString()
+        public override string ToString()
         {
-            return base.toString();
-        }
-        public override void Describe(string prefix = "")
-        {
-            Console.WriteLine(prefix + toString());
+            return base.ToString() + mana.ToString();
         }
     }
 }

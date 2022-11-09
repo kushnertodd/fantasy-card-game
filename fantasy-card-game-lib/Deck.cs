@@ -25,14 +25,14 @@ namespace fantasy_card_game_lib
             }
             return hand;
         }
-        public override string toString()
+        public override string ToString()
         {
-            string description = base.toString();
+            string description = base.ToString();
             return description;
         }
         public override void Describe(string prefix = "")
         {
-            Console.WriteLine(prefix + toString());
+            Console.WriteLine(prefix + ToString());
         }
 
     }

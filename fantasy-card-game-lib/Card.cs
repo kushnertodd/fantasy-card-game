@@ -8,15 +8,15 @@ namespace fantasy_card_game_lib
 {
     public class Card
     {
-        public string name;
+        public string Name { get; set; }
 
-        public virtual string ToString()
+        public virtual string toString()
         {
-            return this.GetType().Name + ":" + name;
+            return this.GetType().Name + ":" + Name;
         }
         public virtual void Describe(string prefix = "")
         {
-            Console.WriteLine(prefix + ToString());
+            Console.WriteLine(prefix + toString());
         }
     }
 }

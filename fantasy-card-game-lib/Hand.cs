@@ -13,14 +13,14 @@ namespace fantasy_card_game_lib
             cards = new List<Card>();
         }
 
-        public string ToString()
+        public override string toString()
         {
-            string description = base.ToString();
+            string description = base.toString();
             return description;
         }
         public override void Describe(string prefix = "")
         {
-            Console.WriteLine(prefix + ToString());
+            Console.WriteLine(prefix + toString());
         }
 
     }

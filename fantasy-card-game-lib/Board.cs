@@ -14,11 +14,11 @@ namespace fantasy_card_game_lib
         List<Equipment> equipments;
         List<Enchantment> enchantments;
         List<Land> lands;
-        public string name;
+        public string Name { get; set; }
 
         public Board(string name)
         {
-            this.name = name;
+            Name = name;
             creatures = new List<Creature>();
             artifacts = new List<Artifact>();
             equipments = new List<Equipment>();
@@ -47,15 +47,15 @@ namespace fantasy_card_game_lib
             lands.Add(land);
         }
 
-        public string ToString()
+        public string toString()
         {
-            string description = name;
+            string description = Name;
             if (creatures.Count > 0)
             {
                 description += " creatures: (";
                 foreach (Creature creature in creatures)
                 {
-                    description += " " + creature.ToString();
+                    description += " " + creature.toString();
                 }
                 description += " )";
             }
@@ -64,7 +64,7 @@ namespace fantasy_card_game_lib
                 description += " artifacts: (";
                 foreach (Artifact artifact in artifacts)
                 {
-                    description += " " + artifact.ToString();
+                    description += " " + artifact.toString();
                 }
                 description += " )";
             }
@@ -73,7 +73,7 @@ namespace fantasy_card_game_lib
                 description += " equipments: (";
                 foreach (Equipment equipment in equipments)
                 {
-                    description += " " + equipment.name;
+                    description += " " + equipment.Name;
                 }
                 description += ")";
             }
@@ -82,7 +82,7 @@ namespace fantasy_card_game_lib
                 description += " enchantments: (";
                 foreach (Enchantment enchantment in enchantments)
                 {
-                    description += " " + enchantment.name;
+                    description += " " + enchantment.Name;
                 }
                 description += " )";
             }
@@ -91,7 +91,7 @@ namespace fantasy_card_game_lib
                 description += " lands: (";
                 foreach (Land land in lands)
                 {
-                    description += " " + land.name;
+                    description += " " + land.Name;
                 }
                 description += " )";
             }
@@ -99,7 +99,7 @@ namespace fantasy_card_game_lib
         }
         public void Describe(string prefix = "")
         {
-            Console.WriteLine(prefix + ToString());
+            Console.WriteLine(prefix + toString());
         }
     }
 }

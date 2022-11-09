@@ -11,12 +11,12 @@ namespace fantasy_card_game_lib
 {
     public class Table
     {
-        public string name;
+        public string Name { get; set; }
         public List<Board> boards = new List<Board>();
 
         public Table(string name)
         {
-            this.name = name;
+            Name = name;
         }
 
         public void Add(Board board)
@@ -29,7 +29,7 @@ namespace fantasy_card_game_lib
             Board result = null;
             foreach (Board board in boards)
             {
-                if (board.name == name)
+                if (board.Name == name)
                 {
                     result = board;
                     break;
@@ -38,18 +38,18 @@ namespace fantasy_card_game_lib
             return result;
         }
 
-        public string ToString()
+        public string toString()
         {
-            string description = name + " boards:";
+            string description = Name + " boards:";
             foreach (Board board in boards)
             {
-                description += " " + board.ToString();
+                description += " " + board.toString();
             }
             return description;
         }
         public void Describe(string prefix = "")
         {
-            Console.WriteLine(prefix + ToString());
+            Console.WriteLine(prefix + toString());
         }
     }
 }

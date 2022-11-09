@@ -10,15 +10,15 @@ namespace fantasy_card_game_lib
     {
         public Enchantment(string name)
         {
-            this.name = name;
+            Name = name;
         }
-        public override string ToString()
+        public override string toString()
         {
-            return base.ToString();
+            return base.toString();
         }
         public override void Describe(string prefix = "")
         {
-            Console.WriteLine(prefix + ToString());
+            Console.WriteLine(prefix + toString());
         }
 
     }

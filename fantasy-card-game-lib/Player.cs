@@ -8,13 +8,13 @@ namespace fantasy_card_game_lib
 {
     public class Player
     {
-        public string name;
+        public string Name { get; set; }
         public Board board;
         public Deck deck;
 
         public Player(string name, Board board, Deck deck)
         {
-            this.name = name;
+            Name = name;
             this.board = board;
             this.deck = deck;
         }
@@ -28,7 +28,7 @@ namespace fantasy_card_game_lib
             Creature commander = null;
             foreach (Card card in cards.cards)
             {
-                if (card.GetType() == typeof(Creature) && card.name == name)
+                if (card.GetType() == typeof(Creature) && card.Name == name)
                 {
                     commander = (Creature) card;
                     break;
@@ -36,13 +36,13 @@ namespace fantasy_card_game_lib
             }
             return commander;
         }
-        public string ToString()
+        public string toString()
         {
-            return name;
+            return Name;
         }
         public void Describe(string prefix = "")
         {
-            Console.WriteLine(prefix + ToString());
+            Console.WriteLine(prefix + toString());
             board.Describe();
             deck.Describe();
         }

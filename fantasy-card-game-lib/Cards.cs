@@ -32,21 +32,21 @@ namespace fantasy_card_game_lib
             cards.Add(card);
         }
 
-        public string ToString()
+        public virtual string toString()
         {
             string description = "";
             if (cards.Count > 0)
             {
                 foreach (Card card in cards)
                 {
-                    description += " " + card.ToString();
+                    description += " " + card.toString();
                 }
             }
             return description;
         }
         public virtual void Describe(string prefix = "")
         {
-            Console.WriteLine(prefix + ToString());
+            Console.WriteLine(prefix + toString());
         }
     }
 }

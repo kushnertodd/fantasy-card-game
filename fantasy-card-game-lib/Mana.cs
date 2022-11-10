@@ -18,8 +18,9 @@ namespace fantasy_card_game_lib
         //later
         //public HashSet<Color> colors = new HashSet<Color>();
         public Color ManaColor { get; set; } // only one color for now
+        public int ManaCount { get; set; }
 
-        public Mana() { }
+    public Mana() { }
 
         // call with: Mana mana = new Mana(new Color[] { Mana.Color.Red, Mana.Color.Blue, Mana.Color.Green });
         //public static Mana createMana(Color[] colors)
@@ -31,14 +32,16 @@ namespace fantasy_card_game_lib
         //    }
         //    return mana;
         //}
-        public Mana(Color color)
+        public Mana(Color color, int manaCount = 1)
         {
             ManaColor=color;
+            ManaCount=manaCount;
         }
-        public void Add(Color color)
+        public void Add(Color color, int manaCount = 1)
         {
             //colors.Add(color);
             ManaColor = color;
+            ManaCount = manaCount;
         }
         public bool Match(Mana mana)
         {
@@ -47,11 +50,11 @@ namespace fantasy_card_game_lib
             //    return true;
             //return false;
             //return (ManaColor == mana.ManaColor || mana.ManaColor == Color.Colorless);
-            return (ManaColor == mana.ManaColor);
+            return (ManaColor == mana.ManaColor && mana.ManaCount <= ManaCount);
         }
         public string ToString(string prefix = "", string separator = " ", string suffix = "")
         {
-            string description = this.GetType().Name + ":" + nameof(ManaColor);
+            string description = this.GetType().Name + ":" + nameof(ManaColor)+"/"+ManaCount;
             //string description = this.GetType().Name + ":";
             //foreach (Color color in colors)
             //    description += " " + color.ToString();

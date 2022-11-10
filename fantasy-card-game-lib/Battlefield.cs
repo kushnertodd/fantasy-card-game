@@ -10,15 +10,15 @@ namespace fantasy_card_game_lib
 {
     public class Battlefield
     {
-        List<Artifact> artifacts = new List<Artifact>();
-        List<Creature> creatures = new List<Creature>();
-        List<Equipment> equipments = new List<Equipment>();
-        List<Enchantment> enchantments = new List<Enchantment>();
-        List<Instant> instants = new List<Instant>();
-        List<Land> lands = new List<Land>();
-        List<Planeswalker> planeswalkers = new List<Planeswalker>();
-        List<Sorcery> sorceries = new List<Sorcery>();
-
+        public List<Artifact> artifacts = new List<Artifact>();
+        public List<Creature> creatures = new List<Creature>();
+        public List<Equipment> equipments = new List<Equipment>();
+        public List<Enchantment> enchantments = new List<Enchantment>();
+        public List<Instant> instants = new List<Instant>();
+        public List<Land> lands = new List<Land>();
+        public List<Planeswalker> planeswalkers = new List<Planeswalker>();
+        public List<Sorcery> sorceries = new List<Sorcery>();
+        public Dictionary<Mana.Color, int> manaCounts = new Dictionary<Mana.Color, int>();
         public Deck deck;
         public Exile exile;
         public Graveyard graveyard;
@@ -28,6 +28,10 @@ namespace fantasy_card_game_lib
             this.deck = deck;
             exile = new Exile();
             graveyard = new Graveyard();
+            foreach (Mana.Color color in Enum.GetValues(typeof(Mana.Color)))
+            {
+                manaCounts.Add(color, 0);
+            }
         }
 
         public void Add(Artifact artifact)
@@ -63,6 +67,50 @@ namespace fantasy_card_game_lib
             sorceries.Add(sorcery);
         }
 
+        public int GetManaCount(Mana.Color color)
+        {
+            return manaCounts[color];
+        }
+        public bool Play(Card card)
+        {
+            if (card.GetType() == typeof(Artifact))
+            {
+                return true;
+            }
+            else if (card.GetType() == typeof(Creature))
+            {
+                return true;
+            }
+            else if (card.GetType() == typeof(Enchantment))
+            {
+                return true;
+            }
+            else if (card.GetType() == typeof(Equipment))
+            {
+                return true;
+            }
+            else if (card.GetType() == typeof(Instant))
+            {
+                return true;
+            }
+            else if (card.GetType() == typeof(Land))
+            {
+                Land land = (Land)card;
+                lands.Add(land);
+                Mana mana = land.mana;
+                manaCounts.Add(mana.ManaColor, manaCounts[mana.ManaColor] + 1);
+                return true;
+            }
+            else if (card.GetType() == typeof(Planeswalker))
+            {
+                return true;
+            }
+            else if (card.GetType() == typeof(Sorcery))
+            {
+                return true;
+            }
+            else return false;
+        }
         public override string ToString()
         {
             string description = "";

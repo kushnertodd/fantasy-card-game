@@ -12,8 +12,8 @@ namespace fantasy_card_game_lib
 {
     public class Mana
     {
-// we'll skip colorless mana for now
-//public enum Color { Colorless, White, Green, Blue, Red, Black }
+        // we'll skip colorless mana for now
+        //public enum Color { Colorless, White, Green, Blue, Red, Black }
         public enum Color { White, Green, Blue, Red, Black }
         //later
         //public HashSet<Color> colors = new HashSet<Color>();
@@ -31,11 +31,9 @@ namespace fantasy_card_game_lib
         //    }
         //    return mana;
         //}
-        public static Mana createMana(Color color)
+        public Mana(Color color)
         {
-            Mana mana = new Mana();
-            mana.Add(color);
-            return mana;
+            ManaColor=color;
         }
         public void Add(Color color)
         {

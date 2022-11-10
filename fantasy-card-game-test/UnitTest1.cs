@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using fantasy_card_game_lib;
+using System.Net.Http.Headers;
 
 namespace fantasy_card_game_test
 {
@@ -9,17 +10,14 @@ namespace fantasy_card_game_test
         [TestMethod]
         public void TestMethod1()
         {
-            Deck deck = new Deck();
-            deck.Add(new Creature("creature1"));
-            deck.Add(new Creature("creature2"));
-            deck.Add(new Artifact("artifact1"));
-            deck.Add(new Artifact("artifact2"));
-            deck.Add(new Equipment("equipment1"));
-            deck.Add(new Equipment("equipment2"));
-            deck.Add(new Enchantment("enchantment1"));
-            deck.Add(new Enchantment("enchantment2"));
-            int actual = deck.cards.Count;
-            Assert.AreEqual(actual, 8, 0.001, "Deck.Add() failed");
+            Mana mana1 = new Mana(Mana.Color.Red);
+            Land land1 = new Land("land1", mana1);
+            Deck deck1 = new Deck();
+            deck1.Add(land1);
+            Battlefield battlefield1 = new Battlefield(deck1);
+            battlefield1.Play(land1);
+            int manaCount = battlefield1.GetManaCount(Mana.Color.Red);
+            Assert.AreEqual(manaCount, 1, "land1 failed");
         }
     }
 }

@@ -30,6 +30,14 @@ namespace fantasy_card_game_lib
                 }
             }
         }
+        public Card Draw()
+        {
+            if (cards.Count == 0)
+                return null;
+            Card card = cards[0];
+            cards.RemoveAt(0);
+            return card;
+        }
         public void Add(Card card)
         {
             cards.Add(card);

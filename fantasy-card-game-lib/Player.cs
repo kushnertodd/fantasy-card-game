@@ -11,25 +11,14 @@ namespace fantasy_card_game_lib
         public string Name { get; set; }
         public int LifePoints { get; set; }
         public int CommanderDamage { get; set; }
-        public Board board;
+        public Battlefield battlefield;
 
-        public Player(string name, Board board)
+        public Player(string name, Battlefield battlefield)
         {
             Name = name;
             LifePoints = 40;
             CommanderDamage = 0;
-            this.board = board;
-        }
-        public Planeswalker SelectCommander(Cards cards, string name)
-        {
-            foreach (Card card in cards.cards)
-            {
-                if (card.GetType() == typeof(Planeswalker) && card.Name == name)
-                {
-                    return (Planeswalker)card;
-                }
-            }
-            return null!;
+            this.battlefield = battlefield;
         }
         public override string ToString()
         {

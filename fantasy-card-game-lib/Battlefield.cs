@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace fantasy_card_game_lib
 {
-    public class Board
+    public class Battlefield
     {
         List<Artifact> artifacts = new List<Artifact>();
         List<Creature> creatures = new List<Creature>();
@@ -20,10 +20,14 @@ namespace fantasy_card_game_lib
         List<Sorcery> sorceries = new List<Sorcery>();
 
         public Deck deck;
+        public Exile exile;
+        public Graveyard graveyard;
 
-        public Board(Deck deck)
+        public Battlefield(Deck deck)
         {
             this.deck = deck;
+            exile = new Exile();
+            graveyard = new Graveyard();
         }
 
         public void Add(Artifact artifact)

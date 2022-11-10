@@ -37,6 +37,13 @@ namespace fantasy_card_game_lib
         {
             colors.Add(color);
         }
+        public bool Match(Mana mana)
+        {
+            ISet<Color> colorsInBoth = colors.Intersect(mana.colors);
+            if (colorsInBoth.Count > 0 || Colorless in colors)
+                return true;
+            return false;
+        }
         public string ToString(string prefix = "", string separator = " ", string suffix = "")
         {
             string description = this.GetType().Name + ":";

@@ -11,7 +11,11 @@ namespace fantasy_card_game_lib
     {
         private List<Mana> manaPool = new List<Mana>();
         public ManaPool() { }
-        public void Add(ManaPool manaPool)
+        public void Add(Mana mana)
+        {
+            manaPool.Add(mana);
+        }
+        public bool Remove(ManaPool manaPool)
         {
             manaPool.Add(manaPool);
         }

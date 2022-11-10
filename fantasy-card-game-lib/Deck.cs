@@ -15,7 +15,7 @@ namespace fantasy_card_game_lib
             cards = new List<Card>();
         }
 
-        public Hand Deal(int size)
+        public Hand DrawHand(int size)
         {
             Hand hand = new Hand();
             for (int i = 0; i < size; i++)

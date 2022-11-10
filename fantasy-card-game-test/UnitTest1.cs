@@ -21,11 +21,16 @@ namespace fantasy_card_game_test
             int manaCount1 = battlefield1.GetManaCount(Mana.Color.Red);
             Assert.AreEqual(manaCount1, count, "playing land1 gave mana count " +
                 manaCount1 + " instead of " + count);
+
+            Creature creature2 = new Creature("creature2", count + 1, Mana.Color.Red);
+            if (!battlefield1.Play(creature2)) Assert.Fail("play creature1 failed)");
+
             Creature creature1 = new Creature("creature1", count, Mana.Color.Red);
             if (!battlefield1.Play(creature1)) Assert.Fail("play creature1 failed)");
             int manaCount2 = battlefield1.GetManaCount(Mana.Color.Red);
             Assert.AreEqual(manaCount2, count, "playing creature1 gave mana count " +
                 manaCount2 + " instead of 0");
+            Console.WriteLine("test 1 succeeded");
         }
     }
 }

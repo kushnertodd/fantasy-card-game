@@ -12,6 +12,11 @@ namespace fantasy_card_game_lib
         {
             cards = new List<Card>();
         }
+        public Card Select(Battlefield battlefield, Errors errors)
+        {
+            Card card = Draw(errors);
+            return card!;
+        }
 
         public override string ToString()
         {

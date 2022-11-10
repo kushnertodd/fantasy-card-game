@@ -33,7 +33,6 @@ namespace fantasy_card_game_lib
                 manaCounts.Add(color, 0);
             }
         }
-
         public void Add(Artifact artifact)
         {
             artifacts.Add(artifact);
@@ -66,7 +65,6 @@ namespace fantasy_card_game_lib
         {
             sorceries.Add(sorcery);
         }
-
         public int GetManaCount(Mana.Color color)
         {
             return manaCounts[color];
@@ -117,6 +115,18 @@ namespace fantasy_card_game_lib
                 return true;
             }
             else return false;
+        }
+        public void Tap()
+        {
+
+        }
+        public void UnTap()
+        {
+
+        }
+        public void Upkeep()
+        {
+
         }
         public override string ToString()
         {

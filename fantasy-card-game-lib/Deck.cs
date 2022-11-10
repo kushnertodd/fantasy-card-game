@@ -25,6 +25,21 @@ namespace fantasy_card_game_lib
             }
             return hand;
         }
+        public Creature SelectCommander(Errors errors)
+        {
+            foreach (Card card in cards)
+            {
+                if (card.GetType() == typeof(Creature))
+                {
+                    Creature creature = (Creature)card;
+                    if (creature.IsCommander)
+                    {
+                        return creature;
+                    }
+                }
+            }
+            return null!;
+        }
         public override string ToString()
         {
             string description = base.ToString();

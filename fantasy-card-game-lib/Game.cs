@@ -17,9 +17,13 @@ namespace fantasy_card_game_lib
         {
             players.Add(player);
         }
-        public Player SelectPlayer(string name)
+        public Player SelectPlayer(string name, Errors errors)
         {
-            return players.Select(name);
+            return players.Select(name, errors);
+        }
+        public void Start()
+        {
+
         }
         public string ToString(string prefix = "", string separator = " ", string suffix = "")
         {

@@ -15,9 +15,14 @@ namespace fantasy_card_game_lib
         {
             players.Add(player);
         }
-        public Player Select(string name)
+        public Player Select(string name, Errors errors)
         {
-            return players.Find(player => player.Name == name)!;
+            Player player = players.Find(player => player.Name == name)!;
+            if (player == null)
+            {
+                errors.Add(Errors.MessageId.PLAYER_NOT_FOUND, name);
+            }
+            return player!;
         }
         public string ToString(string prefix = "", string separator = " ", string suffix = "")
         {

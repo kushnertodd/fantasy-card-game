@@ -79,6 +79,13 @@ namespace fantasy_card_game_lib
             }
             else if (card.GetType() == typeof(Creature))
             {
+                Creature creature = (Creature)card;
+                int creatureCost = creature.Cost;
+                Mana.Color creatureCostColor = creature.CostColor;
+                int manaCount = manaCounts[creatureCostColor];
+                if (creatureCost < manaCount)
+                    return false;
+                manaCounts[creatureCostColor] = manaCounts[creatureCostColor] = creatureCost;
                 return true;
             }
             else if (card.GetType() == typeof(Enchantment))

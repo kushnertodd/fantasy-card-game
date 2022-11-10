@@ -22,7 +22,7 @@ namespace fantasy_card_game_lib
                     if (creature.IsCommander)
                         return creature;
                     else
-                        return null;
+                        return null!;
                 }
             }
             return null!;

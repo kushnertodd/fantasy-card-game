@@ -44,7 +44,7 @@ namespace fantasy_card_game_lib
             Card card = hand.Select(battlefield, errors)!;
             if (!errors.Have)
             {
-                battlefield.Play(card);
+                battlefield.Play(card, errors);
             }
         }
         public override string ToString()

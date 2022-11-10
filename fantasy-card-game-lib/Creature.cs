@@ -8,7 +8,6 @@ namespace fantasy_card_game_lib
 {
     public class Creature : Card
     {
-        public int Cost { get; set; }
         public Mana.Color CostColor { get; set; }
         public bool IsCommander { get; set; }
         public int Power { get; set; }

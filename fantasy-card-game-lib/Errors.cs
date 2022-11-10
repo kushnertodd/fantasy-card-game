@@ -10,18 +10,22 @@ namespace fantasy_card_game_lib
 {
     public class Errors
     {
-        private List<Error> errors;
+        private List<Error> errors = new List<Error>();
         public enum MessageId
         {
             CARD_NOT_FOUND,
             NO_CARDS,
-            PLAYER_NOT_FOUND
+            NOT_ENOUGH_MANA,
+            PLAYER_NOT_FOUND,
+            UNKNOWN_CARD_TYPE
         }
         static Dictionary<MessageId, string> messageNames = new Dictionary<MessageId, string>()
         {
             { MessageId.CARD_NOT_FOUND, "card not found"},
             { MessageId.NO_CARDS, "no cards"},
-            { MessageId.PLAYER_NOT_FOUND, "player not found"}
+            { MessageId.NOT_ENOUGH_MANA, "not enough mana"},
+            { MessageId.PLAYER_NOT_FOUND, "player not found"},
+            { MessageId.UNKNOWN_CARD_TYPE, "unknown card type"}
         };
         public class Error
         {
@@ -47,7 +51,19 @@ namespace fantasy_card_game_lib
                         {
                             break;
                         }
+                    case MessageId.NOT_ENOUGH_MANA:
+                        {
+                            int cost = (int)arguments[0];
+                            int manaCount = (int)arguments[1];
+                            text = manaCount + " not enough for cost " + cost;
+                            break;
+                        }
                     case MessageId.PLAYER_NOT_FOUND:
+                        {
+                            text = (string)arguments[0];
+                            break;
+                        }
+                    case MessageId.UNKNOWN_CARD_TYPE:
                         {
                             text = (string)arguments[0];
                             break;

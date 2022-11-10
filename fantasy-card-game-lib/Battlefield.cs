@@ -69,11 +69,10 @@ namespace fantasy_card_game_lib
         {
             return manaCounts[color];
         }
-        public bool Play(Card card)
+        public void Play(Card card, Errors errors)
         {
             if (card.GetType() == typeof(Artifact))
             {
-                return true;
             }
             else if (card.GetType() == typeof(Creature))
             {
@@ -81,40 +80,40 @@ namespace fantasy_card_game_lib
                 int creatureCost = creature.Cost;
                 Mana.Color creatureCostColor = creature.CostColor;
                 int manaCount = manaCounts[creatureCostColor];
-                if (creatureCost < manaCount)
-                    return false;
-                manaCounts[creatureCostColor] = manaCounts[creatureCostColor] = creatureCost;
-                return true;
+                if (creatureCost > manaCount)
+                {
+                    errors.Add(Errors.MessageId.NOT_ENOUGH_MANA, creatureCost, manaCount);
+                }
+                else
+                {
+                    manaCounts[creatureCostColor] = manaCount - creatureCost;
+                    creatures.Add(creature);
+                }
             }
             else if (card.GetType() == typeof(Enchantment))
             {
-                return true;
             }
             else if (card.GetType() == typeof(Equipment))
             {
-                return true;
             }
             else if (card.GetType() == typeof(Instant))
             {
-                return true;
             }
             else if (card.GetType() == typeof(Land))
             {
                 Land land = (Land)card;
                 lands.Add(land);
                 Mana mana = land.mana;
-                manaCounts.Add(mana.ManaColor, manaCounts[mana.ManaColor] + 1);
-                return true;
+                manaCounts[mana.ManaColor] = manaCounts[mana.ManaColor] + mana.ManaCount;
             }
             else if (card.GetType() == typeof(Planeswalker))
             {
-                return true;
             }
             else if (card.GetType() == typeof(Sorcery))
             {
-                return true;
             }
-            else return false;
+            else
+                errors.Add(Errors.MessageId.UNKNOWN_CARD_TYPE, card.GetType().Name);
         }
         public void Tap()
         {

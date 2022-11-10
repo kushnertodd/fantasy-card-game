@@ -18,14 +18,11 @@ namespace fantasy_card_game_lib
         List<Land> lands = new List<Land>();
         List<Planeswalker> planeswalkers = new List<Planeswalker>();
         List<Sorcery> sorceries = new List<Sorcery>();
-        public Player player;
-        public Deck deck;
-        public string Name { get; set; }
 
-        public Board(string name, Player player, Deck deck)
+        public Deck deck;
+
+        public Board(Deck deck)
         {
-            Name = name;
-            this.player = player;
             this.deck = deck;
         }
 
@@ -64,7 +61,7 @@ namespace fantasy_card_game_lib
 
         public override string ToString()
         {
-            string description = Name;
+            string description = "";
             if (artifacts.Count > 0)
             {
                 description += " artifacts: (" +

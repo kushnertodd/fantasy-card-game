@@ -11,12 +11,14 @@ namespace fantasy_card_game_lib
         public string Name { get; set; }
         public int LifePoints { get; set; }
         public int CommanderDamage { get; set; }
+        public Board board;
 
-        public Player(string name)
+        public Player(string name, Board board)
         {
             Name = name;
             LifePoints = 40;
             CommanderDamage = 0;
+            this.board = board;
         }
         public Planeswalker SelectCommander(Cards cards, string name)
         {

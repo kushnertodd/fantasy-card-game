@@ -27,7 +27,7 @@ https://www.c-sharpcorner.com/article/how-to-resolve-issue-of-test-project-not-r
  there was no Microsoft.NET.Test.Sdk in the .csproj file. (fixed above)
  
 error:
-visual studio 2022 no console output from debug
+visual studio 2022 no console output from debug, e.g., debugging tests
 solution:
 https://developercommunity.visualstudio.com/t/show-console-output-in-visual-studio/417172
 When you do need to see output in Visual Studio use System.Diagnotics.Debug.WriteLine:

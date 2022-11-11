@@ -26,4 +26,16 @@ solution:
 https://www.c-sharpcorner.com/article/how-to-resolve-issue-of-test-project-not-running-the-unit-tests-after-upgrade-to/
  there was no Microsoft.NET.Test.Sdk in the .csproj file. (fixed above)
  
- 
+error:
+visual studio 2022 no console output from debug
+solution:
+https://developercommunity.visualstudio.com/t/show-console-output-in-visual-studio/417172
+When you do need to see output in Visual Studio use System.Diagnotics.Debug.WriteLine:
+
+output shows on Tests->Debug all tests
+in Output window Debug
+using System.Diagnostics;
+...
+Debug.WriteLine("test 2 succeeded");
+
+

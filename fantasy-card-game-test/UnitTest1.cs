@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using fantasy_card_game_lib;
 using System.Net.Http.Headers;
+using System.Diagnostics;
 
 namespace fantasy_card_game_test
 {
@@ -49,7 +50,7 @@ namespace fantasy_card_game_test
             int manaCount2 = battlefield1.GetManaCount(Mana.Color.Red);
             Assert.AreEqual(manaCount2, 0, "playing creature1 gave mana count " +
                 manaCount2 + " instead of 0");
-            Console.WriteLine("test 1 succeeded");
+            Debug.WriteLine("test 1 succeeded");
 
             //
             //*** play the land on the battlefield (again)
@@ -77,6 +78,7 @@ namespace fantasy_card_game_test
             //if (errors.Have)
             //    Assert.Fail("play creature1 failed) " + errors);
             Console.WriteLine("test 2 succeeded");
+            Debug.WriteLine("test 2 succeeded");
         }
     }
 }

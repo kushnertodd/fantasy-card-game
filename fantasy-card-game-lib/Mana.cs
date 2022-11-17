@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-enum Color { Colorless, White, Red, Blue, Green, Black }
+enum ManaTypeColor { Colorless, White, Red, Blue, Green, Black }
 
 
 namespace fantasy_card_game_lib
@@ -14,10 +14,10 @@ namespace fantasy_card_game_lib
     {
         // we'll skip colorless mana for now
         //public enum Color { Colorless, White, Green, Blue, Red, Black }
-        public enum Color { White, Green, Blue, Red, Black }
+        public enum ManaTypeColor { White, Green, Blue, Red, Black }
         //later
         //public HashSet<Color> colors = new HashSet<Color>();
-        public Color ManaColor { get; set; } // only one color for now
+        public ManaTypeColor ManaColor { get; set; } // only one color for now
         public int ManaCount { get; set; }
 
     public Mana() { }
@@ -32,12 +32,12 @@ namespace fantasy_card_game_lib
         //    }
         //    return mana;
         //}
-        public Mana(Color color, int manaCount = 1)
+        public Mana(ManaTypeColor color, int manaCount = 1)
         {
             ManaColor=color;
             ManaCount=manaCount;
         }
-        public void Add(Color color, int manaCount = 1)
+        public void Add(ManaTypeColor color, int manaCount = 1)
         {
             //colors.Add(color);
             ManaColor = color;

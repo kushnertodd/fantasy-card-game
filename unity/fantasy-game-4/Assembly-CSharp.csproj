@@ -63,6 +63,7 @@
     <Compile Include="Assets\game code\ManaPool.cs" />
     <Compile Include="Assets\game code\Cards.cs" />
     <Compile Include="Assets\game code\Enchantment.cs" />
+    <Compile Include="Assets\unity code\MouseScript.cs" />
     <Compile Include="Assets\game code\Creature.cs" />
     <Compile Include="Assets\game code\Instant.cs" />
     <Compile Include="Assets\game code\Exile.cs" />
@@ -77,12 +78,11 @@
     <Compile Include="Assets\game code\ListUtilities.cs" />
     <Compile Include="Assets\game code\Graveyard.cs" />
     <Compile Include="Assets\game code\Equipment.cs" />
+    <Compile Include="Assets\unity code\LoadScript.cs" />
     <Compile Include="Assets\game code\PlanesWalker.cs" />
     <Compile Include="Assets\game code\Game.cs" />
     <Compile Include="Assets\game code\Artifact.cs" />
     <Compile Include="Assets\game code\Hand.cs" />
-    <Compile Include="Assets\unity code\LoadScript.cs" />
-    <Compile Include="Assets\unity code\MouseScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class MouseScript : MonoBehaviour
 {
-    GameObject card;
-
-    public void OnMouseDown1()
+    private void Start()
     {
-        card = GameObject.Find("GameObject");
-        if (card.activeSelf)
-        {
-            card.SetActive(false);
-        }
-        Debug.Log("testing 1 2 3");
+        Debug.Log("MouseScript starting!");
+    }
+    public void OnMouseDown()
+    {
+        //GameObject card = GameObject.Find("GameObject");
+        //GameObject card = GetComponent<GameObject>();
+        Vector3 rotationToAdd = new Vector3(0, 0, 90);
+        transform.Rotate(rotationToAdd);
+        Debug.Log("rotated mousescript!");
     }
 }

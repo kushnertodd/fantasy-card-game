@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class LoadScript : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class LoadScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //experiment = new Experiment1();
         experiment.Start();
     }
     public void OnMouseDown()
@@ -35,12 +35,10 @@ public class Experiment1
     public void Start()
     {
         card = GameObject.Find("GameObject");
-        // var images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
         Sprite image = Resources.Load<Sprite>("Sprites/basic_land_edit_again");
         if (image != null)
         {
             card.AddComponent<SpriteRenderer>();
-            //gameObject.AddComponent(System.Type.GetType("MouseScript"));
             card.AddComponent<BoxCollider>();
             card.GetComponent<SpriteRenderer>().sprite = image;
             Debug.Log("GameObject LoadScript loaded!");
@@ -68,12 +66,10 @@ public class Experiment2
     public void Start()
     {
         card = GameObject.Find("GameObject");
-        // var images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
         Sprite image = Resources.Load<Sprite>("Sprites/basic_land_edit_again");
         if (image != null)
         {
             card.AddComponent<SpriteRenderer>();
-            //gameObject.AddComponent(System.Type.GetType("MouseScript"));
             card.AddComponent<BoxCollider>();
             card.GetComponent<SpriteRenderer>().sprite = image;
             Debug.Log("GameObject LoadScript loaded!");
@@ -118,9 +114,7 @@ public class Experiment3
     {
         card = GameObject.Find("GameObject");
         card.AddComponent<SpriteRenderer>();
-        //gameObject.AddComponent(System.Type.GetType("MouseScript"));
         card.AddComponent<BoxCollider>();
-        //Sprite[] images = (Sprite[])Resources.LoadAll("Sprites");
         Sprite[] images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
         if (images != null)
         {
@@ -155,10 +149,10 @@ public class Experiment3
 // randomly select card from Resources and makes card inactive on mouse down
 public class Experiment4
 {
-    Vector3 startPos = new Vector3(-6, -2, 0);
+    Vector3 startPos = new Vector3(-8.5f, -2, 0);
     public const int gridRows = 2;
     public const int gridCols = 4;
-    public const float offsetX = 4f;
+    public const float offsetX = 5.5f;
     public const float offsetY = 2.5f;
     public const int maxCards = 4;
     GameObject card;
@@ -184,11 +178,10 @@ public class Experiment4
     public void SetCard(int id, Sprite image, float posX, float posY)
     {
         _id = id;
-        //card = GameObject.Find("GameObject");
         card = new GameObject();
         card.AddComponent<SpriteRenderer>();
-        //gameObject.AddComponent(System.Type.GetType("MouseScript"));
         card.AddComponent<BoxCollider>();
+        card.AddComponent<MouseScript>();
         card.transform.position = new Vector3(posX, posY, startPos.z);
         card.GetComponent<SpriteRenderer>().sprite = image;
     }
@@ -196,11 +189,6 @@ public class Experiment4
     public void Start()
     {
         Debug.Log("starting!");
-        //card = GameObject.Find("GameObject");
-        //card.AddComponent<SpriteRenderer>();
-        ////gameObject.AddComponent(System.Type.GetType("MouseScript"));
-        //card.AddComponent<BoxCollider>();
-        //Sprite[] images = (Sprite[])Resources.LoadAll("Sprites");
         Sprite[] images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
         Shuffle(images, 2);
         Debug.Log("read images " + images);
@@ -228,16 +216,9 @@ public class Experiment4
     }
     public void OnMouseDown()
     {
-        if (card.activeSelf)
-        {
-            card.SetActive(false);
-            Debug.Log("card inactive");
-        }
-        else
-        {
-            card.SetActive(true);
-            Debug.Log("card active");
-        }
+        Vector3 rotationToAdd = new Vector3(0, 90, -2);
+        card.transform.Rotate(rotationToAdd);
+        Debug.Log("rotated LoadScript!");
     }
 
     // Update is called once per frame

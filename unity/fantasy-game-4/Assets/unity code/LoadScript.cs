@@ -5,11 +5,15 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class LoadScript : MonoBehaviour
 {
-    Experiment4 experiment = new Experiment4();
+    private Experiment4 experiment = new Experiment4();
+    private static bool manaChanged = false;
+    public static bool getManaChanged() { return manaChanged; }
+    public static void setManaChanged(bool value) { manaChanged = value; }
     // Start is called before the first frame update
     void Start()
     {
@@ -149,17 +153,19 @@ public class Experiment3
 // randomly select card from Resources and makes card inactive on mouse down
 public class Experiment4
 {
-    Vector3 startPos = new Vector3(-8.5f, -2, 0);
+    private Vector3 startPos = new Vector3(-8.5f, -2, 0);
     public const int gridRows = 2;
     public const int gridCols = 4;
     public const float offsetX = 5.5f;
     public const float offsetY = 2.5f;
     public const int maxCards = 4;
-    GameObject card;
+    private GameObject card;
+    private GameObject number;
     private int _id;
     public int Id { get { return _id; } }
     private System.Random rnd = new System.Random();
-
+    private Sprite[] numbers = new Sprite[4];
+    private int currentMana = 0;
     public void Shuffle(Sprite[] images, int count = 1)
     {
         for (int i = 0; i < count; i++)
@@ -185,28 +191,47 @@ public class Experiment4
         card.transform.position = new Vector3(posX, posY, startPos.z);
         card.GetComponent<SpriteRenderer>().sprite = image;
     }
+    public void SetNumbers(float posX, float posY)
+    {
+        number = new GameObject();
+        number.AddComponent<SpriteRenderer>();
+        //number.AddComponent<BoxCollider>();
+        //number.AddComponent<MouseScript>();
+        number.transform.position = new Vector3(posX, posY, 0);
+        number.transform.localScale = new Vector3(2, 2, 1);
+        numbers[0] = Resources.Load<Sprite>("Numbers/zero");
+        numbers[1] = Resources.Load<Sprite>("Numbers/one");
+        numbers[2] = Resources.Load<Sprite>("Numbers/two");
+        numbers[3] = Resources.Load<Sprite>("Numbers/three");
+        SetNumber();
+    }
+    public void SetNumber()
+    {
+        number.GetComponent<SpriteRenderer>().sprite = numbers[currentMana];
+    }
     // Start is called before the first frame update
     public void Start()
     {
         Debug.Log("starting!");
+        //GameObject screen = GameObject.Find("GameObject");
+        //screen.AddComponent<Text>();
+        //Text text = screen.GetComponent<Text>();
+        //text.transform.position = new Vector3(0, 0, -1);
+        //text.GetComponent<Text>().text = "hello";
         Sprite[] images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
+        SetNumbers(7, 4);
         Shuffle(images, 2);
         Debug.Log("read images " + images);
         if (images != null)
         {
             _id = 0;
             for (int i = 0; i < images.Length && i < maxCards; i++)
-                //for (int i = 0; i < gridCols; i++)
             {
-                //for (int j = 0; j < gridRows; j++)
-                //{
                 float posX = (offsetX * i) + startPos.x;
-                float posY = startPos.y; // (offsetY * i) + startPos.y;
-                                //GameObject nextcard = LoadScript.Instantiate(card) as GameObject;
+                float posY = startPos.y;
                 Sprite image = images[i];
                 SetCard(i, image, posX, posY);
                 Debug.Log("displaying image " + _id + " at (" + posX + "," + posY + ")");
-                //}
             }
             Debug.Log("GameObject LoadScript image " + _id + " loaded!");
         }
@@ -224,6 +249,10 @@ public class Experiment4
     // Update is called once per frame
     public void Update()
     {
-
+        if (LoadScript.getManaChanged())
+        {
+            SetNumber();
+            LoadScript.setManaChanged(false);
+        }
     }
 }

@@ -208,7 +208,7 @@ public class Experiment4
     }
     public void SetNumber()
     {
-        number.GetComponent<SpriteRenderer>().sprite = numbers[currentMana];
+        //number.GetComponent<SpriteRenderer>().sprite = numbers[currentMana];
     }
     // Start is called before the first frame update
     public void Start()
@@ -254,8 +254,8 @@ public class Experiment4
             }
             else
             {
-                Debug.Log("Update rotating " + MouseScript.rotation_rate +
-                    " current " + MouseScript.current_rotation);
+                //Debug.Log("Update rotating " + MouseScript.rotation_rate +
+                //    " current " + MouseScript.current_rotation);
                 Vector3 rotationToAdd = new Vector3(0, 0, MouseScript.rotation_rate);
                 MouseScript.rotate_transform.Rotate(rotationToAdd);
                 MouseScript.current_rotation += MouseScript.rotation_rate;

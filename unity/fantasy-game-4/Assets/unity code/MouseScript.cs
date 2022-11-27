@@ -6,6 +6,7 @@ using UnityEngine;
 public class MouseScript : MonoBehaviour
 {
     private bool tapped = false;
+    private bool played = false;
     public static bool rotating = false;
     public static float total_rotation = 0;
     public static float current_rotation = 0;
@@ -18,12 +19,23 @@ public class MouseScript : MonoBehaviour
     }
     public void OnMouseDown()
     {
+        if (!played)
+        {
+            Vector3 pos = transform.position;
+            pos.y = pos.y + 5;
+            transform.position = pos;
+            played = true;
+        }else
+        if (!rotating) { 
         rotate_transform = transform;
         if (!tapped)
         {
             tapped = true;
             //Vector3 rotationToAdd = new Vector3(0, 0, 90);
             //transform.Rotate(rotationToAdd);
+            //Vector3 pos = transform.position;
+            //pos.y = pos.y + 5;
+            //transform.position = pos;
             rotation_rate = net_rotation_rate;
             current_rotation = 0;
             total_rotation = 90;
@@ -35,11 +47,15 @@ public class MouseScript : MonoBehaviour
             tapped = false;
             //Vector3 rotationToAdd = new Vector3(0, 0, -90);
             //transform.Rotate(rotationToAdd);
+            //Vector3 pos = transform.position;
+            //pos.y = pos.y - 5;
+            //transform.position = pos;
             rotation_rate = -net_rotation_rate;
             current_rotation = 0;
             total_rotation = -90;
             Debug.Log("rotated tapped mousescript!");
         }
         rotating = true;
+        }
     }
 }

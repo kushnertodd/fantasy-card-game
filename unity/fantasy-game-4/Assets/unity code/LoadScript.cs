@@ -187,6 +187,7 @@ public class Experiment4
         card = new GameObject();
         card.AddComponent<SpriteRenderer>();
         card.AddComponent<BoxCollider>();
+        card.GetComponent<BoxCollider>().size = new Vector3(3, 5, 0);
         card.AddComponent<MouseScript>();
         card.transform.position = new Vector3(posX, posY, startPos.z);
         card.GetComponent<SpriteRenderer>().sprite = image;
@@ -234,6 +235,7 @@ public class Experiment4
             Debug.Log("uh-oh, image resources not found!");
         Debug.Log("started.");
     }
+
     public void OnMouseDown()
     {
         Vector3 rotationToAdd = new Vector3(0, 90, -2);
@@ -244,6 +246,21 @@ public class Experiment4
     // Update is called once per frame
     public void Update()
     {
+        if (MouseScript.rotating)
+        {
+            if (MouseScript.current_rotation == MouseScript.total_rotation)
+            {
+                MouseScript.rotating = false;
+            }
+            else
+            {
+                Debug.Log("Update rotating " + MouseScript.rotation_rate +
+                    " current " + MouseScript.current_rotation);
+                Vector3 rotationToAdd = new Vector3(0, 0, MouseScript.rotation_rate);
+                MouseScript.rotate_transform.Rotate(rotationToAdd);
+                MouseScript.current_rotation += MouseScript.rotation_rate;
+            }
+        }
         if (LoadScript.getManaChanged())
         {
             SetNumber();

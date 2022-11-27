@@ -213,11 +213,6 @@ public class Experiment4
     public void Start()
     {
         Debug.Log("starting!");
-        //GameObject screen = GameObject.Find("GameObject");
-        //screen.AddComponent<Text>();
-        //Text text = screen.GetComponent<Text>();
-        //text.transform.position = new Vector3(0, 0, -1);
-        //text.GetComponent<Text>().text = "hello";
         Sprite[] images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
         SetNumbers(7, 4);
         Shuffle(images, 2);

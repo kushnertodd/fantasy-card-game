@@ -39,10 +39,6 @@ public class LoadScript : MonoBehaviour
             }
         }
     }
-    public void SetCard(int id, Sprite image, float posX, float posY)
-    {
-         card = new UnityCard(cardPrefab, image,  posX,  posY);
-    }
     public void SetNumbers(float posX, float posY)
     {
         number = new GameObject();
@@ -55,11 +51,6 @@ public class LoadScript : MonoBehaviour
         numbers[1] = Resources.Load<Sprite>("Numbers/one");
         numbers[2] = Resources.Load<Sprite>("Numbers/two");
         numbers[3] = Resources.Load<Sprite>("Numbers/three");
-        SetNumber();
-    }
-    public void SetNumber()
-    {
-        //number.GetComponent<SpriteRenderer>().sprite = numbers[currentMana];
     }
     public static bool getManaChanged() { return manaChanged; }
     public static void setManaChanged(bool value) { manaChanged = value; }
@@ -79,7 +70,7 @@ public class LoadScript : MonoBehaviour
                 float posX = (offsetX * i) + startPos.x;
                 float posY = startPos.y;
                 Sprite image = images[i];
-                SetCard(i, image, posX, posY);
+                card = new UnityCard(cardPrefab, image, posX, posY);
                 Debug.Log("displaying image " + i + " at (" + posX + "," + posY + ")");
             }
             Debug.Log("GameObject LoadScript image loaded!");
@@ -87,12 +78,6 @@ public class LoadScript : MonoBehaviour
         else
             Debug.Log("uh-oh, image resources not found!");
         Debug.Log("started.");
-    }
-    public void OnMouseDown()
-    {
-        Vector3 rotationToAdd = new Vector3(0, 90, -2);
-        card.Card.transform.Rotate(rotationToAdd);
-        Debug.Log("rotated LoadScript!");
     }
 
     // Update is called once per frame
@@ -106,8 +91,6 @@ public class LoadScript : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Update rotating " + MouseScript.rotation_rate +
-                //    " current " + MouseScript.current_rotation);
                 Vector3 rotationToAdd = new Vector3(0, 0, MouseScript.rotation_rate);
                 MouseScript.rotate_transform.Rotate(rotationToAdd);
                 MouseScript.current_rotation += MouseScript.rotation_rate;
@@ -115,7 +98,6 @@ public class LoadScript : MonoBehaviour
         }
         if (LoadScript.getManaChanged())
         {
-            SetNumber();
             LoadScript.setManaChanged(false);
         }
     }

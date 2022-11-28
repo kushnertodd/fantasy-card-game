@@ -12,12 +12,12 @@ namespace Assets.unity_code
 {
     public class UnityCard
     {
-        public GameObject Card { get; set; }
+        public GameObject BoardCard { get; set; }
         public UnityCard(GameObject cardPrefab, Sprite image, float posX, float posY)
         {
-            Card = GameObject.Instantiate(cardPrefab) as GameObject;
-            Card.transform.position = new Vector3(posX, posY, 0);
-            Card.GetComponent<SpriteRenderer>().sprite = image;
+            BoardCard = GameObject.Instantiate(cardPrefab) as GameObject;
+            BoardCard.transform.position = new Vector3(posX, posY, 0);
+            BoardCard.GetComponent<SpriteRenderer>().sprite = image;
         }
     }
 }

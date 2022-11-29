@@ -83,22 +83,25 @@ public class LoadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MouseScript.rotating)
+        foreach (UnityCard unityCard in UnityCard.unityCards)
         {
-            if (MouseScript.current_rotation == MouseScript.total_rotation)
+            if (unityCard.rotating)
             {
-                MouseScript.rotating = false;
+                if (unityCard.current_rotation == unityCard.total_rotation)
+                {
+                    unityCard.rotating = false;
+                }
+                else
+                {
+                    Vector3 rotationToAdd = new Vector3(0, 0, unityCard.rotation_rate);
+                    unityCard.BoardCard.transform.Rotate(rotationToAdd);
+                    unityCard.current_rotation += unityCard.rotation_rate;
+                }
             }
-            else
+            if (LoadScript.getManaChanged())
             {
-                Vector3 rotationToAdd = new Vector3(0, 0, MouseScript.rotation_rate);
-                MouseScript.rotate_transform.Rotate(rotationToAdd);
-                MouseScript.current_rotation += MouseScript.rotation_rate;
+                LoadScript.setManaChanged(false);
             }
-        }
-        if (LoadScript.getManaChanged())
-        {
-            LoadScript.setManaChanged(false);
         }
     }
 }

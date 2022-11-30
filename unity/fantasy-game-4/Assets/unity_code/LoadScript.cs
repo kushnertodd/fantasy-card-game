@@ -70,6 +70,8 @@ public class LoadScript : MonoBehaviour
                 float posX = (offsetX * i) + startPos.x;
                 float posY = startPos.y;
                 Sprite image = images[i];
+                Rect rect = image.rect;
+                Debug.Log("image rect " + rect);
                 card = new UnityCard(cardPrefab, image, posX, posY);
                 Debug.Log("displaying image " + i + " at (" + posX + "," + posY + ")");
             }

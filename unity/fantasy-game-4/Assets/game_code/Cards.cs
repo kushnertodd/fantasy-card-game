@@ -1,70 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace fantasy_card_game_lib
 {
-    public class Cards
+    class Cards
     {
-        private static Random rng = new Random();
+        public List<Card> cardList = new List<Card>();
 
-        public List<Card> cards = new List<Card>();
-
-        /**
-         * https://www.delftstack.com/howto/csharp/shuffle-a-list-in-csharp/
-         */
-        public void Shuffle(int count = 1)
+        public Cards() { }
+        public static Cards CreateCards(string fileName, Errors errors)
         {
-            for (int i = 0; i < count; i++)
+            Cards cards = new Cards();
+            List<List<string>> lines = FileIO.ReadDelimitedFile(fileName, errors);
+            for (int lineNo = 0; lineNo < lines.Count; lineNo++)
             {
-                int n = cards.Count;
-                while (n > 1)
-                {
-                    n--;
-                    int k = rng.Next(n + 1);
-                    Card value = cards[k];
-                    cards[k] = cards[n];
-                    cards[n] = value;
-                }
+                List<string> line = lines[lineNo];
+                Card card = Card.CreateCard(line, lineNo, errors);
+                if (errors.Have)
+                    return null;
+                cards.Add(card);
             }
+            return cards;
         }
         public void Add(Card card)
         {
-            cards.Add(card);
+            cardList.Add(card);
         }
-        public Card Draw(Errors errors)
+        public override string ToString()
         {
-            if (cards.Count == 0)
+            string text = string.Empty;
+            foreach (Card card in cardList)
             {
-                errors.Add(Errors.MessageId.NO_CARDS);
-                return null!;
+                text += card.ToString() + "\n";
             }
-            Card card = cards[0];
-            cards.RemoveAt(0);
-            return card;
-        }
-
-        public void Remove(Card card, Errors errors)
-        {
-            if (cards.Count == 0)
-            {
-                errors.Add(Errors.MessageId.NO_CARDS);
-            }
-            else
-            {
-                if (!cards.Remove(card))
-                    errors.Add(Errors.MessageId.CARD_NOT_FOUND, card);
-            }
-        }
-        public string ToString(string prefix = "", string separator = " ", string suffix = "")
-        {
-            return ListUtilities<Card>.ToString(cards, prefix, separator, suffix);
-        }
-        public virtual void Describe(string prefix = "")
-        {
-            Console.WriteLine(prefix + ToString());
+            return text;
         }
     }
 }

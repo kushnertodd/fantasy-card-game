@@ -1,13 +1,8 @@
 using fantasy_card_game_lib;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.UI;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 using Assets.unity_code;
+using System.Collections.Generic;
 
 public class LoadScript : MonoBehaviour
 {
@@ -23,12 +18,12 @@ public class LoadScript : MonoBehaviour
     private GameObject number;
     private System.Random rnd = new System.Random();
     private Sprite[] numbers = new Sprite[4];
-    private int currentMana = 0;
-    public void Shuffle(Sprite[] images, int count = 1)
+    //private int currentMana = 0;
+    public void Shuffle(List<Sprite> images, int count = 1)
     {
         for (int i = 0; i < count; i++)
         {
-            int n = images.Length;
+            int n = images.Count;
             while (n > 1)
             {
                 n--;
@@ -59,13 +54,20 @@ public class LoadScript : MonoBehaviour
     {
 
         Debug.Log("starting!");
-        Sprite[] images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
+        Errors errors = new Errors();
+        Cards cards = Cards.CreateCards("cards.db", errors);
+        List<Sprite> images = new List<Sprite>();
+        foreach (Card card in cards.cardList)
+        {
+            Sprite sprite = UnityUtils.LoadNewSprite(card.FileName);
+        }
+        //Sprite[] images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
         SetNumbers(7, 4);
         Shuffle(images, 2);
         Debug.Log("read images " + images);
         if (images != null)
         {
-            for (int i = 0; i < images.Length && i < maxCards; i++)
+            for (int i = 0; i < images.Count && i < maxCards; i++)
             {
                 float posX = (offsetX * i) + startPos.x;
                 float posY = startPos.y;

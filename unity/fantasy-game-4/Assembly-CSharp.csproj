@@ -56,35 +56,15 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\game_code\Player.cs" />
-    <Compile Include="Assets\game_code\Mana.cs" />
-    <Compile Include="Assets\game_code\Deck.cs" />
-    <Compile Include="Assets\game_code\SetUtilities.cs" />
-    <Compile Include="Assets\game_code\ManaPool.cs" />
     <Compile Include="Assets\game_code\Cards.cs" />
-    <Compile Include="Assets\game_code\Enchantment.cs" />
     <Compile Include="Assets\unity_code\MouseScript.cs" />
-    <Compile Include="Assets\game_code\Creature.cs" />
-    <Compile Include="Assets\game_code\Instant.cs" />
-    <Compile Include="Assets\game_code\Exile.cs" />
-    <Compile Include="Assets\game_code\Battlefield.cs" />
     <Compile Include="Assets\game_code\Card.cs" />
-    <Compile Include="Assets\game_code\Players.cs" />
-    <Compile Include="Assets\game_code\CardPool.cs" />
     <Compile Include="Assets\unity_code\LandCard.cs" />
-    <Compile Include="Assets\game_code\Land.cs" />
     <Compile Include="Assets\game_code\Errors.cs" />
-    <Compile Include="Assets\game_code\Sorcery.cs" />
-    <Compile Include="Assets\game_code\ListUtilities.cs" />
-    <Compile Include="Assets\game_code\Graveyard.cs" />
     <Compile Include="Assets\unity_code\UnityCard.cs" />
-    <Compile Include="Assets\game_code\Equipment.cs" />
     <Compile Include="Assets\unity_code\LoadScript.cs" />
-    <Compile Include="Assets\game_code\PlanesWalker.cs" />
-    <Compile Include="Assets\game_code\Game.cs" />
-    <Compile Include="Assets\game_code\Artifact.cs" />
-    <Compile Include="Assets\game_code\Hand.cs" />
-    <Compile Include="Assets\game_code\TsvFile.cs" />
+    <Compile Include="Assets\game_code\FileIO.cs" />
+    <Compile Include="Assets\unity_code\UnityUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

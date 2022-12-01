@@ -13,6 +13,7 @@ namespace fantasy_card_game_lib
         private List<Error> errors = new List<Error>();
         public enum MessageId
         {
+            MISC_TEXT,
             CARD_NOT_FOUND,
             NO_CARDS,
             NOT_ENOUGH_MANA,
@@ -21,6 +22,7 @@ namespace fantasy_card_game_lib
         }
         static Dictionary<MessageId, string> messageNames = new Dictionary<MessageId, string>()
         {
+            { MessageId.MISC_TEXT, "message"},
             { MessageId.CARD_NOT_FOUND, "card not found"},
             { MessageId.NO_CARDS, "no cards"},
             { MessageId.NOT_ENOUGH_MANA, "not enough mana"},
@@ -41,6 +43,11 @@ namespace fantasy_card_game_lib
                 string text = "";
                 switch (messageId)
                 {
+                    case MessageId.MISC_TEXT:
+                        {
+                            text = (string)arguments[0];
+                            break;
+                        }
                     case MessageId.CARD_NOT_FOUND:
                         {
                             Card card = (Card)arguments[0];

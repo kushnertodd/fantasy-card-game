@@ -84,6 +84,7 @@
     <Compile Include="Assets\game_code\Game.cs" />
     <Compile Include="Assets\game_code\Artifact.cs" />
     <Compile Include="Assets\game_code\Hand.cs" />
+    <Compile Include="Assets\game_code\TsvFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

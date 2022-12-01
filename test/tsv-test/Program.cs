@@ -1,61 +1,25 @@
 ﻿using System.ComponentModel;
 
-class Errors
+namespace TSV_test
 {
-    private List<string> errorList = new List<string>();
-    public void Add(string error)
+    class Program
     {
-        errorList.Add(error);
-    }
-    public bool Have()
-    {
-        return errorList.Count > 0;
-    }
-    public string ToString()
-    {
-        string text = "";
-        foreach (string error in errorList) { text += error + "\n"; }
-        return text; 
-    }
-}
-class TestClass
-{
-    static List<List<string>> ReadDelimitedFile(string docPath, Errors errors)
-    {
-        var recList = new List<List<string>>();
-
-        // Read the file and display it line by line.
-
-        try
+        static void Main(string[] args)
         {
-            using (var file = new StreamReader(docPath))
+            Errors errors = new Errors();
+            Cards cardList = Cards.CreateCards("cards.db", errors);
+            if (errors.Have())
             {
-                string line;
-                while ((line = file.ReadLine()) != null)
-                {
-                    var delimiters = new char[] { '\t' };
-                    var segments = line.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-                    recList.Add(segments.ToList());
-                }
-
-                file.Close();
+                Console.WriteLine("errors:\n" + errors.ToString());
+            } else
+            {
+                Console.WriteLine("cards:\n" + cardList.ToString());
             }
+            //List<List<string>> lines = FileIO.ReadDelimitedFile("cards.db", errors);
+            //if (errors.Have())
+            //    Console.WriteLine("errors: " + errors.ToString());
+            //else
+            //    Console.WriteLine("read " + lines.Count + " lines");
         }
-        catch (IOException e)
-        {
-            errors.Add(e.Message);
-        }
-        return recList;
-    }
-
-    static void Main(string[] args)
-    {
-        Errors errors = new Errors();
-        List<List<string>> lines = ReadDelimitedFile("cards.db", errors);
-        if (errors.Have())
-            Console.WriteLine("errors: " + errors.ToString());
-        else
-            Console.WriteLine("read " + lines.Count + " lines");
-        int a = 1;
     }
 }

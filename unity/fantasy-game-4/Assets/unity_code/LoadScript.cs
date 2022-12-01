@@ -56,15 +56,27 @@ public class LoadScript : MonoBehaviour
         Debug.Log("starting!");
         Errors errors = new Errors();
         Cards cards = Cards.CreateCards("cards.db", errors);
+        if (errors.Have)
+        {
+            Debug.Log("errors on reading cards.db: " + errors.ToString());
+        }
         List<Sprite> images = new List<Sprite>();
         foreach (Card card in cards.cardList)
         {
-            Sprite sprite = UnityUtils.LoadNewSprite(card.FileName);
+            string fileName = "Assets/Resources/cards/" + card.FileName;
+            Sprite sprite = UnityUtils.LoadNewSprite(fileName, errors);
+            if (sprite != null)
+            {
+                images.Add(UnityUtils.LoadNewSprite(fileName, errors));
+                Debug.Log("read image " + fileName);
+            }
+            else
+                Debug.Log("error reading image " + fileName + ": " + errors.ToString());
         }
         //Sprite[] images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
         SetNumbers(7, 4);
         Shuffle(images, 2);
-        Debug.Log("read images " + images);
+        Debug.Log("read " + images.Count + " images");
         if (images != null)
         {
             for (int i = 0; i < images.Count && i < maxCards; i++)

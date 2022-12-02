@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 8472399003938737168, guid: 78df891a7b2c1f24e9ec10932cf4507d, type: 3}
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1866607565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5091068274212409860, guid: 78df891a7b2c1f24e9ec10932cf4507d, type: 3}
@@ -266,6 +267,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1463702471}
     m_Modifications:
+    - target: {fileID: 1224687397943119246, guid: 78df891a7b2c1f24e9ec10932cf4507d, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224687397943119246, guid: 78df891a7b2c1f24e9ec10932cf4507d, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5091068274212409860, guid: 78df891a7b2c1f24e9ec10932cf4507d, type: 3}
       propertyPath: m_RootOrder
       value: -1

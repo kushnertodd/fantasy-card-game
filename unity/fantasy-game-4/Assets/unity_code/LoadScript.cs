@@ -65,7 +65,7 @@ public class LoadScript : MonoBehaviour
         Errors errors = new Errors();
         Vector2 screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         Vector2 screenOrigin = Camera.main.ScreenToWorldPoint(Vector2.zero);
-        startPos = new Vector3(screenOrigin.x, screenOrigin.y, 0);
+        startPos = new Vector3(screenOrigin.x*3/4, screenOrigin.y/2, 0);
         /*
          *  screenBOunds (10.76, 5.40)
          *  screenOrigin (-10.76, -5.40)
@@ -100,11 +100,12 @@ public class LoadScript : MonoBehaviour
         {
             for (int i = 0; i < images.Count && i < maxCards; i++)
             {
-                float posX = (offsetX * i) + startPos.x;
-                float posY = startPos.y;
                 Sprite image = images[i];
                 Rect rect = image.rect;
                 Debug.Log("image rect " + rect);
+                //float posX = (offsetX * i) + startPos.x;
+                float posX = rect.height/200 * i + startPos.x;
+                float posY = startPos.y;
                 card = new UnityCard(cardPrefab, image, posX, posY);
                 Debug.Log("displaying image " + i + " at (" + posX + "," + posY + ")");
             }

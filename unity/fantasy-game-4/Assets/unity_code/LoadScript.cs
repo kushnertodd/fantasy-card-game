@@ -8,7 +8,14 @@ public class LoadScript : MonoBehaviour
 {
     [SerializeField] GameObject cardPrefab;
     private static bool manaChanged = false;
-    private Vector3 startPos = new Vector3(-8.5f, -2, 0);
+    /*
+     *  screenBOunds (10.76, 5.40)
+     *  screenOrigin (-10.76, -5.40)
+     *  Screen.width 1139
+     *  Screen.height 574
+     */
+    //private Vector3 startPos = new Vector3(-8.5f, -2, 0);
+    public Vector3 startPos;
     public const int gridRows = 2;
     public const int gridCols = 4;
     public const float offsetX = 5.5f;
@@ -54,8 +61,20 @@ public class LoadScript : MonoBehaviour
     {
 
         Debug.Log("starting!");
+        //private Vector3 startPos = new Vector3(-8.5f, -2, 0);
         Errors errors = new Errors();
-        Cards cards = Cards.CreateCards("cards.db", errors);
+        Vector2 screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Vector2 screenOrigin = Camera.main.ScreenToWorldPoint(Vector2.zero);
+        startPos = new Vector3(screenOrigin.x, screenOrigin.y, 0);
+        /*
+         *  screenBOunds (10.76, 5.40)
+         *  screenOrigin (-10.76, -5.40)
+         */
+        Debug.Log("screenBounds " + screenBounds.ToString());
+        Debug.Log("screenOrigin " + screenOrigin.ToString());
+        Debug.Log("Screen.width " + Screen.width.ToString());
+        Debug.Log("Screen.height " + Screen.height.ToString());
+        Cards cards = Cards.CreateCards(UnityCard.Dbpath + "cards.db", errors);
         if (errors.Have)
         {
             Debug.Log("errors on reading cards.db: " + errors.ToString());
@@ -63,7 +82,7 @@ public class LoadScript : MonoBehaviour
         List<Sprite> images = new List<Sprite>();
         foreach (Card card in cards.cardList)
         {
-            string fileName = "Assets/Resources/cards/" + card.FileName;
+            string fileName = UnityCard.Imagepath + card.FileName;
             Sprite sprite = UnityUtils.LoadNewSprite(fileName, errors);
             if (sprite != null)
             {

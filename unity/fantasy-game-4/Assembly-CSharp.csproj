@@ -61,10 +61,10 @@
     <Compile Include="Assets\game_code\Card.cs" />
     <Compile Include="Assets\unity_code\LandCard.cs" />
     <Compile Include="Assets\game_code\Errors.cs" />
+    <Compile Include="Assets\unity_code\UnityUtils.cs" />
     <Compile Include="Assets\unity_code\UnityCard.cs" />
     <Compile Include="Assets\unity_code\LoadScript.cs" />
     <Compile Include="Assets\game_code\FileIO.cs" />
-    <Compile Include="Assets\unity_code\UnityUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

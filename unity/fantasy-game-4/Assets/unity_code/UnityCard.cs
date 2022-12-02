@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using fantasy_card_game_lib;
+using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 namespace Assets.unity_code
@@ -15,20 +17,46 @@ namespace Assets.unity_code
         public float rotation_rate;
         public float net_rotation_rate = 0.5f;
         //public  UnityEngine.Transform rotate_transform;
+        public static string Dbpath = "Assets/Resources/cards/";
+        public static string Imagepath = "Assets/Resources/cards/";
         public UnityCard(GameObject cardPrefab, Sprite image, float posX, float posY)
         {
+            BoxCollider boxCollider = cardPrefab.GetComponent<BoxCollider>();
+            //Debug.Log("UnityCard: boxCollider " + boxCollider);
+            Vector3 boxSize = boxCollider.size;
+            Bounds boxBounds = boxCollider.bounds;
+            //Debug.Log("UnityCard: boxBounds " + boxBounds);
+            Bounds imageSize = image.bounds;
+            //Debug.Log("Unitycard: image size " + imageSize.ToString());
+            Vector3 size = imageSize.size;
+            //Debug.Log("UnityCard: size " + size);
+            float width = size.y;
+            float height = size.x;
+            Vector3 boxCenter = boxBounds.center;
+            //Debug.Log("UnityCard: boxCenter " + boxCenter);
+            boxCenter.y = width / 2;
+            boxCenter.x = height / 2;
+            boxCollider.center = boxCenter;
+            //Debug.Log("UnityCard: height " + height + " width " + width);
+            boxSize.y = width; 
+            boxSize.x = height;
+            boxCollider.size = boxSize;
+
             BoardCard = GameObject.Instantiate(cardPrefab) as GameObject;
-            BoardCard.transform.position = new Vector3(posX, posY, 0);
             BoardCard.GetComponent<SpriteRenderer>().sprite = image;
+            BoardCard.transform.position = new Vector3(posX, posY, 0);
             unityCards.Add(this);
         }
-        public static UnityCard findCard(GameObject card)
+        public static UnityCard findCard(GameObject card, Errors errors)
         {
+            Debug.Log("UnityCard.findCard: looking for " + card.ToString());
             foreach (UnityCard unityCard in unityCards)
             {
+                Debug.Log("UnityCard.findCard: checking for " + card.ToString());
                 if (unityCard.BoardCard == card)
                     return unityCard;
             }
+            errors.Add(Errors.MessageId.MISC_TEXT, "OnMouseDown: cound not find card");
             return null;
         }
         public void OnMouseDown()

@@ -20,7 +20,11 @@ namespace Assets.unity_code
             Texture2D SpriteTexture = LoadTexture(FilePath, errors);
             if (errors.Have)
                 return null;
-            return Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0, 0), PixelsPerUnit);
+            return Sprite.Create(SpriteTexture,
+                new Rect(0, 0, SpriteTexture.width, SpriteTexture.height),
+                //new Vector2(-SpriteTexture.width / 2, -SpriteTexture.height / 2),
+                new Vector2(0.5f, 0.5f),
+                PixelsPerUnit);
         }
 
         public static Texture2D LoadTexture(string FilePath, Errors errors)

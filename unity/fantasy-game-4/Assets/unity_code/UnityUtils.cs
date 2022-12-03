@@ -28,7 +28,7 @@ namespace Assets.unity_code
                 //new Vector2(-SpriteTexture.width / 2, -SpriteTexture.height / 2),
                 // center the pivot point
                 new Vector2(0.5f, 0.5f),
-                PixelsPerUnit); 
+                PixelsPerUnit);
         }
         /// <summary>
         /// LoadTexture loads texture from text file

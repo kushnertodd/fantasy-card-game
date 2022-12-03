@@ -252,13 +252,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b784f71973fdbf542a1dc991e5cacc2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 8472399003938737168, guid: 78df891a7b2c1f24e9ec10932cf4507d, type: 3}
-  startPos: {x: 0, y: 0, z: 0}
+  loadcardPrefab: {fileID: 0}
 --- !u!4 &1866607565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5091068274212409860, guid: 78df891a7b2c1f24e9ec10932cf4507d, type: 3}
   m_PrefabInstance: {fileID: 1126266040545474765}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1935625368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8472399003938737168, guid: 78df891a7b2c1f24e9ec10932cf4507d, type: 3}
+  m_PrefabInstance: {fileID: 1126266040545474765}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1935625372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935625368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b784f71973fdbf542a1dc991e5cacc2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadcardPrefab: {fileID: 8472399003938737168, guid: 78df891a7b2c1f24e9ec10932cf4507d, type: 3}
 --- !u!1001 &1126266040545474765
 PrefabInstance:
   m_ObjectHideFlags: 0

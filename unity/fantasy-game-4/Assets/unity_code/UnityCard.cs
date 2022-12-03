@@ -9,42 +9,42 @@ namespace Assets.unity_code
     {
         public GameObject BoardCard { get; set; }
         public static List<UnityCard> unityCards = new List<UnityCard>();
+        // initial state for cards
         public bool tapped = false;
         public bool played = false;
         public bool rotating = false;
+        // variables used for rotation
         public float total_rotation = 0;
         public float current_rotation = 0;
         public float rotation_rate;
+        // speed at which cards rotate when tapped, positive for tapping, negative for untapping
         public float net_rotation_rate = 0.5f;
-        //public  UnityEngine.Transform rotate_transform;
+        // where the database file cards.db lives
         public static string Dbpath = "Assets/Resources/cards/";
+        // where the card front images live
         public static string Imagepath = "Assets/Resources/cards/";
         public UnityCard(GameObject cardPrefab, Sprite image, float posX, float posY)
         {
+            // boxcollider controlling where mouse clicks are picked up
             BoxCollider boxCollider = cardPrefab.GetComponent<BoxCollider>();
-            //Debug.Log("UnityCard: boxCollider " + boxCollider);
-            Vector3 boxSize = boxCollider.size;
+            // get image size
             Bounds imageSize = image.bounds;
-            //Debug.Log("Unitycard: image size " + imageSize.ToString());
             Vector3 size = imageSize.size;
-            //Debug.Log("UnityCard: size " + size);
             float width = size.y;
             float height = size.x;
-            //Debug.Log("UnityCard: height " + height + " width " + width);
+            // set boxcollider size to size of the card image
+            Vector3 boxSize = boxCollider.size;
             boxSize.y = width; 
             boxSize.x = height;
             boxCollider.size = boxSize;
             Bounds boxBounds = boxCollider.bounds;
-            //Debug.Log("UnityCard: boxBounds " + boxBounds);
-            Vector3 boxCenter = boxBounds.center;
-            //Debug.Log("UnityCard: boxCenter " + boxCenter);
-            boxCenter.y = 0; // width / 2;
-            boxCenter.x = 0; // height / 2;
-            boxCollider.center = boxCenter;
-
+            // create board card from prefab
             BoardCard = GameObject.Instantiate(cardPrefab) as GameObject;
+            // set sprite to image
             BoardCard.GetComponent<SpriteRenderer>().sprite = image;
+            // move card to position
             BoardCard.transform.position = new Vector3(posX, posY, 0);
+            // add card to global card list so can find from MouseScript on mouse click
             unityCards.Add(this);
         }
         public static UnityCard findCard(GameObject card, Errors errors)

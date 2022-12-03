@@ -12,6 +12,9 @@ namespace Assets.unity_code
 {
     internal class UnityUtils
     {
+        /**
+         * LoadNewSprite -- load sprite from image file
+         */
         public static Sprite LoadNewSprite(string FilePath, Errors errors, float PixelsPerUnit = 100.0f)
         {
 
@@ -23,16 +26,17 @@ namespace Assets.unity_code
             return Sprite.Create(SpriteTexture,
                 new Rect(0, 0, SpriteTexture.width, SpriteTexture.height),
                 //new Vector2(-SpriteTexture.width / 2, -SpriteTexture.height / 2),
+                // center the pivot point
                 new Vector2(0.5f, 0.5f),
-                PixelsPerUnit);
+                PixelsPerUnit); 
         }
-
+        /// <summary>
+        /// LoadTexture loads texture from text file
+        /// </summary>
         public static Texture2D LoadTexture(string FilePath, Errors errors)
         {
-
             // Load a PNG or JPG file from disk to a Texture2D
             // Returns null if load fails
-
             Texture2D Tex2D;
             byte[] FileData;
 

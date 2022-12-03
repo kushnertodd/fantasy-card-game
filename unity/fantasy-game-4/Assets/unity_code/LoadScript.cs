@@ -7,15 +7,10 @@ using System.Collections.Generic;
 
 public class LoadScript : MonoBehaviour
 {
+    private UnityGame unityGame;
     // Start is called before the first frame update
-    //[SerializeField] 
-    //[SerializeField] public GameObject loadcardPrefab;
-    // public static GameObject cardPrefab;
-
-    UnityGame unityGame;
     void Start()
     {
-        //cardPrefab = loadcardPrefab;
         unityGame = new UnityGame();
         unityGame.Start();
     }

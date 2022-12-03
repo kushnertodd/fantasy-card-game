@@ -7,25 +7,23 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Assets.unity_code;
 using fantasy_card_game_lib;
+using Unity.VisualScripting;
 
 namespace Assets.unity_code
 {
-    internal class UnityUtils
+    public class UnityUtils
     {
         /**
          * LoadNewSprite -- load sprite from image file
          */
         public static Sprite LoadNewSprite(string FilePath, Errors errors, float PixelsPerUnit = 100.0f)
         {
-
             // Load a PNG or JPG image from disk to a Texture2D, assign this texture to a new sprite and return its reference
-
             Texture2D SpriteTexture = LoadTexture(FilePath, errors);
             if (errors.Have)
                 return null;
             return Sprite.Create(SpriteTexture,
                 new Rect(0, 0, SpriteTexture.width, SpriteTexture.height),
-                //new Vector2(-SpriteTexture.width / 2, -SpriteTexture.height / 2),
                 // center the pivot point
                 new Vector2(0.5f, 0.5f),
                 PixelsPerUnit);
@@ -43,12 +41,16 @@ namespace Assets.unity_code
             if (File.Exists(FilePath))
             {
                 FileData = File.ReadAllBytes(FilePath);
-                Tex2D = new Texture2D(2, 2);           // Create new "empty" texture
-                if (Tex2D.LoadImage(FileData))           // Load the imagedata into the texture (size is set automatically)
-                    return Tex2D;                 // If data = readable -> return texture
+                // Create new "empty" texture
+                Tex2D = new Texture2D(2, 2);           
+                // Load the imagedata into the texture (size is set automatically)
+                if (Tex2D.LoadImage(FileData))
+                    // If data = readable-> return texture
+                    return Tex2D;                 
             }
             errors.Add(Errors.MessageId.MISC_TEXT, "LoadTexture: texture file " + FilePath + " not found");
-            return null;                     // Return null if load failed
+            // Return null if load failed
+            return null;                     
         }
     }
 }

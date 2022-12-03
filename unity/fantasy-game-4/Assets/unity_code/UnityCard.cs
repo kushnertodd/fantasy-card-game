@@ -1,6 +1,7 @@
 ﻿using fantasy_card_game_lib;
 using System.Collections.Generic;
 using System.Drawing;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.unity_code
@@ -8,7 +9,7 @@ namespace Assets.unity_code
     public class UnityCard
     {
         public GameObject BoardCard { get; set; }
-        GameObject cardPrefab;
+        private GameObject cardPrefab;
         // initial state for cards
         public bool tapped = false;
         public bool played = false;
@@ -22,7 +23,7 @@ namespace Assets.unity_code
 
         public UnityCard(
             //GameObject cardPrefab, 
-            Sprite image, float posX, float posY)
+            Sprite image, float posX, float posY, string tag)
         {
             this.cardPrefab = UnityGame.cardPrefab;
             // boxcollider controlling where mouse clicks are picked up
@@ -40,6 +41,7 @@ namespace Assets.unity_code
             Bounds boxBounds = boxCollider.bounds;
             // create board card from prefab
             BoardCard = GameObject.Instantiate(cardPrefab) as GameObject;
+            BoardCard.tag = tag;
             // set sprite to image
             BoardCard.GetComponent<SpriteRenderer>().sprite = image;
             // move card to position
@@ -48,36 +50,48 @@ namespace Assets.unity_code
 
         public void OnMouseDown()
         {
-            if (!played)
+            if (BoardCard.tag =="Library")
             {
-                Vector3 pos = BoardCard.transform.position;
-                pos.y = pos.y + 5;
-                BoardCard.transform.position = pos;
-                played = true;
-            }
-            else
-            if (!rotating)
+
+            } 
+            else if (BoardCard.tag == "HandCard")
             {
-                //rotate_transform = BoardCard.transform;
-                if (!tapped)
+                if (!played)
                 {
-                    tapped = true;
-                    rotation_rate = net_rotation_rate;
-                    current_rotation = 0;
-                    total_rotation = 90;
-                    UnityGame.manaChanged = true;
-                    Debug.Log("rotated untapped mousescript!");
+                    Vector3 pos = BoardCard.transform.position;
+                    pos.y = pos.y + 5;
+                    BoardCard.transform.position = pos;
+                    played = true;
                 }
                 else
+                if (!rotating)
                 {
-                    tapped = false;
-                    rotation_rate = -net_rotation_rate;
-                    current_rotation = 0;
-                    total_rotation = -90;
-                    Debug.Log("rotated tapped mousescript!");
+                    //rotate_transform = BoardCard.transform;
+                    if (!tapped)
+                    {
+                        tapped = true;
+                        rotation_rate = net_rotation_rate;
+                        current_rotation = 0;
+                        total_rotation = 90;
+                        UnityGame.manaChanged = true;
+                        Debug.Log("rotated untapped mousescript!");
+                    }
+                    else
+                    {
+                        tapped = false;
+                        rotation_rate = -net_rotation_rate;
+                        current_rotation = 0;
+                        total_rotation = -90;
+                        Debug.Log("rotated tapped mousescript!");
+                    }
+                    rotating = true;
                 }
-                rotating = true;
             }
+            else
+            {
+                Debug.Log("UnityCard.OnMouseDown: unrecognized unityCard tag " + BoardCard.tag); 
+            }
+            UnityGame.OnMouseDown(this);
         }
     }
 }

@@ -8,7 +8,7 @@ public class MouseScript : MonoBehaviour
     {
         Errors errors = new Errors();
         GameObject card = this.gameObject;
-        UnityCard unityCard = UnityGame.findCard(card, errors);
+        UnityCard unityCard = UnityGame.FindCard(card, errors);
         if (errors.Have)
             Debug.Log(errors.ToString());
         else

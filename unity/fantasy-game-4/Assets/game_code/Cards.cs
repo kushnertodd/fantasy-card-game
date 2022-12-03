@@ -5,7 +5,6 @@ namespace fantasy_card_game_lib
     class Cards
     {
         public List<Card> cardList = new List<Card>();
-
         public Cards() { }
         public static Cards CreateCards(string fileName, Errors errors)
         {

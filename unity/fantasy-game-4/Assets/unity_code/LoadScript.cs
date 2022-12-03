@@ -21,7 +21,7 @@ public class LoadScript : MonoBehaviour
     public const float offsetX = 5.5f;
     public const float offsetY = 2.5f;
     public const int maxCards = 4;
-    private UnityCard card;
+    //private UnityCard card;
     private GameObject number;
     private System.Random rnd = new System.Random();
     private Sprite[] numbers = new Sprite[4];
@@ -65,7 +65,7 @@ public class LoadScript : MonoBehaviour
         Errors errors = new Errors();
         Vector2 screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         Vector2 screenOrigin = Camera.main.ScreenToWorldPoint(Vector2.zero);
-        startPos = new Vector3(screenOrigin.x*3/4, screenOrigin.y/2, 0);
+        startPos = new Vector3(screenOrigin.x * 3 / 4, screenOrigin.y / 2, 0);
         /*
          *  screenBOunds (10.76, 5.40)
          *  screenOrigin (-10.76, -5.40)
@@ -94,7 +94,7 @@ public class LoadScript : MonoBehaviour
         }
         //Sprite[] images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
         SetNumbers(7, 4);
-        Shuffle(images, 2);
+        Shuffle(images, 3);
         Debug.Log("read " + images.Count + " images");
         if (images != null)
         {
@@ -104,10 +104,19 @@ public class LoadScript : MonoBehaviour
                 Rect rect = image.rect;
                 Debug.Log("image rect " + rect);
                 //float posX = (offsetX * i) + startPos.x;
-                float posX = rect.height/200 * i + startPos.x;
+                float posX = rect.height / 200 * i * 1.1f + startPos.x;
                 float posY = startPos.y;
-                card = new UnityCard(cardPrefab, image, posX, posY);
+                UnityCard card = new UnityCard(cardPrefab, image, posX, posY);
                 Debug.Log("displaying image " + i + " at (" + posX + "," + posY + ")");
+            }
+            string cardBackFileName = UnityCard.Imagepath + "card.back.jpg";
+            Sprite cardBack = UnityUtils.LoadNewSprite(cardBackFileName, errors);
+            if (cardBack != null)
+            {
+                Rect rect = cardBack.rect;
+                float posX = rect.height / 200 * maxCards * 1.1f + startPos.x;
+                float posY = startPos.y;
+                UnityCard card = new UnityCard(cardPrefab, cardBack, posX, posY);
             }
             Debug.Log("GameObject LoadScript image loaded!");
         }

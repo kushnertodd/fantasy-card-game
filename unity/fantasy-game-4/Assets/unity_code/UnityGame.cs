@@ -9,13 +9,14 @@ using UnityEngine;
 
 namespace Assets.unity_code
 {
-    enum GameState
+    public enum GameState
     {
         Start,
         HandDealt
     }
     public class UnityGame
     {
+        private GameObject gameObject;
         // where the database file cards.db lives
         public static string Dbpath = "Assets/Resources/cards/";
         // where the card front images live
@@ -25,11 +26,15 @@ namespace Assets.unity_code
         public static bool manaChanged;
         public static GameObject cardPrefab;
         private static GameState gameState = GameState.Start;
+        static private Vector2 screenBounds;
+        static private Vector2 screenOrigin;
 
         public const int maxCards = 4;
-        private GameObject number;
+        public static GameObject number;
         private static System.Random rnd = new System.Random();
-        private Sprite[] numbers = new Sprite[4];
+        //public static Sprite[] numbers = new Sprite[4];
+        public static string[] numbers = new string[] { "Numbers/zero", "Numbers/one", "Numbers/two", "Numbers/three" };
+        public static int manaCount = 0;
 
         /*
          *  screenBOunds (10.76, 5.40)
@@ -42,9 +47,10 @@ namespace Assets.unity_code
         public const float offsetX = 5.5f;
         public const float offsetY = 2.5f;
         public static Vector3 startPos; //  = new Vector3(-8.5f, -2, 0);
-        public UnityGame()
+        public UnityGame(GameObject gameObject)
         {
             cardPrefab = Resources.Load<GameObject>("CardPrefab");
+            this.gameObject = gameObject;
         }
         public static void AddCard(UnityCard card)
         {
@@ -76,6 +82,7 @@ namespace Assets.unity_code
                         Debug.Log("errors on reading cards.db: " + errors.ToString());
                     }
                     List<Sprite> images = new List<Sprite>();
+                    Shuffle(cards.cardList);
                     foreach (Card card in cards.cardList)
                     {
                         string fileName = UnityGame.Imagepath + card.FileName;
@@ -88,7 +95,7 @@ namespace Assets.unity_code
                         else
                             Debug.Log("error reading image " + fileName + ": " + errors.ToString());
                     }
-                    Shuffle(images, 3);
+                    //Shuffle(images, 3);
                     Debug.Log("read " + images.Count + " images");
                     if (images != null)
                     {
@@ -102,7 +109,7 @@ namespace Assets.unity_code
                             float posY = startPos.y;
                             UnityCard card = new UnityCard(
                                 //cardPrefab,
-                                image, posX, posY, "HandCard");
+                                image, posX, posY, "HandCard", cards.cardList[i].Type);
                             AddCard(card);
                             Debug.Log("displaying image " + i + " at (" + posX + "," + posY + ")");
                         }
@@ -122,23 +129,23 @@ namespace Assets.unity_code
         }
         public void SetNumbers(float posX, float posY)
         {
+            //numbers[0] = Resources.Load<Sprite>("Numbers/zero");
+            //numbers[1] = Resources.Load<Sprite>("Numbers/one");
+            //numbers[2] = Resources.Load<Sprite>("Numbers/two");
+            //numbers[3] = Resources.Load<Sprite>("Numbers/three");
             number = new GameObject();
             number.AddComponent<SpriteRenderer>();
             //number.AddComponent<BoxCollider>();
             //number.AddComponent<MouseScript>();
-            number.transform.position = new Vector3(posX, posY, 0);
+            number.transform.position = new Vector3(posX, screenBounds.y / 2 + 2, 0);
             number.transform.localScale = new Vector3(2, 2, 1);
-            numbers[0] = Resources.Load<Sprite>("Numbers/zero");
-            numbers[1] = Resources.Load<Sprite>("Numbers/one");
-            numbers[2] = Resources.Load<Sprite>("Numbers/two");
-            numbers[3] = Resources.Load<Sprite>("Numbers/three");
+            number.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(numbers[0]);
         }
 
         public void SetupGame()
         {
             Errors errors = new Errors();
             //Sprite[] images = Resources.LoadAll("Sprites", typeof(Sprite)).Cast<Sprite>().ToArray();
-            SetNumbers(7, 4);
             string cardBackFileName = UnityGame.Imagepath + "card.back.jpg";
             Sprite cardBack = UnityUtils.LoadNewSprite(cardBackFileName, errors);
             if (cardBack != null)
@@ -149,25 +156,27 @@ namespace Assets.unity_code
                 UnityCard card = new UnityCard(
                     //cardPrefab,
                     cardBack, posX, posY,
-                    "Library");
+                    "Library", CardType.Back);
                 // add card to global card list so can find from MouseScript on mouse click
                 unityCards.Add(card);
+                SetNumbers(posX, 0);
             }
             Debug.Log("GameObject LoadScript image loaded!");
         }
 
-        public static void Shuffle(List<Sprite> images, int count = 1)
+        //        public static void Shuffle(List<Sprite> images, int count = 1)
+        public static void Shuffle(List<Card> cards, int count = 1)
         {
             for (int i = 0; i < count; i++)
             {
-                int n = images.Count;
+                int n = cards.Count;
                 while (n > 1)
                 {
                     n--;
                     int k = rnd.Next(n + 1);
-                    Sprite value = images[k];
-                    images[k] = images[n];
-                    images[n] = value;
+                    Card value = cards[k];
+                    cards[k] = cards[n];
+                    cards[n] = value;
                 }
             }
         }
@@ -176,8 +185,8 @@ namespace Assets.unity_code
             Debug.Log("starting!");
             //private Vector3 startPos = new Vector3(-8.5f, -2, 0);
             Errors errors = new Errors();
-            Vector2 screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-            Vector2 screenOrigin = Camera.main.ScreenToWorldPoint(Vector2.zero);
+            screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+            screenOrigin = Camera.main.ScreenToWorldPoint(Vector2.zero);
             startPos = new Vector3(screenOrigin.x * 3 / 4, screenOrigin.y / 2, 0);
             /*
              *  screenBOunds (10.76, 5.40)
@@ -210,6 +219,8 @@ namespace Assets.unity_code
                 if (manaChanged)
                 {
                     manaChanged = false;
+                    UnityGame.number.GetComponent<SpriteRenderer>().sprite =
+                        Resources.Load<Sprite>(UnityGame.numbers[UnityGame.manaCount]);
                 }
             }
         }

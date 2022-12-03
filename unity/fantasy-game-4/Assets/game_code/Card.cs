@@ -3,19 +3,20 @@ using System.Collections.Generic;
 
 namespace fantasy_card_game_lib
 {
-    enum CardType
+    public enum CardType
     {
+        Back,
         Creature,
         Land
     }
-    enum CardManaColor
+    public enum CardManaColor
     {
         Blue,
         Green,
         Red,
         WHite
     }
-    internal class Card
+    public class Card
     {
         // Island.jpg	1	0	935	671
         public string FileName { get; set; }

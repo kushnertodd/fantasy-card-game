@@ -3,15 +3,13 @@ using System.Linq;
 using UnityEngine;
 using Assets.unity_code;
 using System.Collections.Generic;
-
-
 public class LoadScript : MonoBehaviour
 {
     private UnityGame unityGame;
     // Start is called before the first frame update
     void Start()
     {
-        unityGame = new UnityGame();
+        unityGame = new UnityGame(gameObject);
         unityGame.Start();
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.unity_code
@@ -9,6 +10,7 @@ namespace Assets.unity_code
     public class UnityCard
     {
         public GameObject BoardCard { get; set; }
+        public CardType cardType;
         public string Tag { get; set; }
         private GameObject cardPrefab;
         // initial state for cards
@@ -24,9 +26,11 @@ namespace Assets.unity_code
 
         public UnityCard(
             //GameObject cardPrefab, 
-            Sprite image, float posX, float posY, string tag)
+            Sprite image, float posX, float posY, string tag, CardType cardType)
         {
             this.cardPrefab = UnityGame.cardPrefab;
+            this.cardType = cardType;
+            this.Tag = tag;
             // boxcollider controlling where mouse clicks are picked up
             BoxCollider boxCollider = cardPrefab.GetComponent<BoxCollider>();
             // get image size
@@ -42,7 +46,6 @@ namespace Assets.unity_code
             Bounds boxBounds = boxCollider.bounds;
             // create board card from prefab
             BoardCard = GameObject.Instantiate(cardPrefab) as GameObject;
-            this.Tag = tag;
             // set sprite to image
             BoardCard.GetComponent<SpriteRenderer>().sprite = image;
             // move card to position
@@ -63,6 +66,13 @@ namespace Assets.unity_code
                     pos.y = pos.y + 5;
                     BoardCard.transform.position = pos;
                     played = true;
+                    if (cardType == CardType.Land)
+                    {
+                        UnityGame.manaChanged= true;
+                        UnityGame.manaCount++;
+                        //UnityGame.number.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(
+                        //UnityGame.numbers[UnityGame.manaCount]);
+                    }
                 }
                 else
                 if (!rotating)

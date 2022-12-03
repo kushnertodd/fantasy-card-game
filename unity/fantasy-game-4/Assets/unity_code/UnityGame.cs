@@ -12,7 +12,7 @@ namespace Assets.unity_code
     enum GameState
     {
         Start,
-        HandDealed
+        HandDealt
     }
     public class UnityGame
     {
@@ -46,7 +46,7 @@ namespace Assets.unity_code
         {
             cardPrefab = Resources.Load<GameObject>("CardPrefab");
         }
-        public void AddCard(UnityCard card)
+        public static void AddCard(UnityCard card)
         {
             unityCards.Add(card);
         }
@@ -64,52 +64,60 @@ namespace Assets.unity_code
         }
         public static void OnMouseDown(UnityCard unityCard)
         {
-            if (unityCard.BoardCard.tag == "Library")
+            if (unityCard.Tag == "Library")
             {
-                gameState = GameState.HandDealed;
-                Errors errors = new Errors();
-                Cards cards = Cards.CreateCards(UnityGame.Dbpath + "cards.db", errors);
-                if (errors.Have)
+                if (gameState == GameState.Start)
                 {
-                    Debug.Log("errors on reading cards.db: " + errors.ToString());
-                }
-                List<Sprite> images = new List<Sprite>();
-                foreach (Card card in cards.cardList)
-                {
-                    string fileName = UnityGame.Imagepath + card.FileName;
-                    Sprite sprite = UnityUtils.LoadNewSprite(fileName, errors);
-                    if (sprite != null)
+                    gameState = GameState.HandDealt;
+                    Errors errors = new Errors();
+                    Cards cards = Cards.CreateCards(UnityGame.Dbpath + "cards.db", errors);
+                    if (errors.Have)
                     {
-                        images.Add(UnityUtils.LoadNewSprite(fileName, errors));
-                        Debug.Log("read image " + fileName);
+                        Debug.Log("errors on reading cards.db: " + errors.ToString());
+                    }
+                    List<Sprite> images = new List<Sprite>();
+                    foreach (Card card in cards.cardList)
+                    {
+                        string fileName = UnityGame.Imagepath + card.FileName;
+                        Sprite sprite = UnityUtils.LoadNewSprite(fileName, errors);
+                        if (sprite != null)
+                        {
+                            images.Add(UnityUtils.LoadNewSprite(fileName, errors));
+                            Debug.Log("read image " + fileName);
+                        }
+                        else
+                            Debug.Log("error reading image " + fileName + ": " + errors.ToString());
+                    }
+                    Shuffle(images, 3);
+                    Debug.Log("read " + images.Count + " images");
+                    if (images != null)
+                    {
+                        for (int i = 0; i < images.Count && i < maxCards; i++)
+                        {
+                            Sprite image = images[i];
+                            Rect rect = image.rect;
+                            Debug.Log("image rect " + rect);
+                            //float posX = (offsetX * i) + startPos.x;
+                            float posX = rect.height / 200 * i * 1.1f + startPos.x;
+                            float posY = startPos.y;
+                            UnityCard card = new UnityCard(
+                                //cardPrefab,
+                                image, posX, posY, "HandCard");
+                            AddCard(card);
+                            Debug.Log("displaying image " + i + " at (" + posX + "," + posY + ")");
+                        }
                     }
                     else
-                        Debug.Log("error reading image " + fileName + ": " + errors.ToString());
-                }
-                Shuffle(images, 3);
-                Debug.Log("read " + images.Count + " images");
-                if (images != null)
-                {
-                    for (int i = 0; i < images.Count && i < maxCards; i++)
-                    {
-                        Sprite image = images[i];
-                        Rect rect = image.rect;
-                        Debug.Log("image rect " + rect);
-                        //float posX = (offsetX * i) + startPos.x;
-                        float posX = rect.height / 200 * i * 1.1f + startPos.x;
-                        float posY = startPos.y;
-                        UnityCard card = new UnityCard(
-                            //cardPrefab,
-                            image, posX, posY, "HandCard");
-                        Debug.Log("displaying image " + i + " at (" + posX + "," + posY + ")");
-                    }
+                        Debug.Log("uh-oh, image resources not found!");
                 }
                 else
-                    Debug.Log("uh-oh, image resources not found!");
+                {
+                    Debug.Log("UnityGame.OnMouseDown: unprocessed game state " + gameState);
+                }
             }
             else
             {
-                Debug.Log("UnityGame.OnMouseDown: unrecognized unityCard tag " + unityCard.BoardCard.tag);
+                Debug.Log("UnityGame.OnMouseDown: unrecognized unityCard tag " + unityCard.Tag);
             }
         }
         public void SetNumbers(float posX, float posY)

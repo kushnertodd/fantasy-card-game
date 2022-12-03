@@ -18,6 +18,7 @@ public class LoadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        unityGame.Update();
+        if (unityGame != null)
+            unityGame.Update();
     }
 }

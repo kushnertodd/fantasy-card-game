@@ -12,6 +12,6 @@ public class MouseScript : MonoBehaviour
         if (errors.Have)
             Debug.Log(errors.ToString());
         else
-        unityCard.OnMouseDown();
+            unityCard.OnMouseDown();
     }
 }

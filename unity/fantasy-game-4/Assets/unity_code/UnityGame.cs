@@ -33,7 +33,7 @@ namespace Assets.unity_code
         public static GameObject number;
         private static System.Random rnd = new System.Random();
         //public static Sprite[] numbers = new Sprite[4];
-        public static string[] numbers = new string[] { "Numbers/zero", "Numbers/one", "Numbers/two", "Numbers/three" };
+        public static string[] numbers = new string[] { "Numbers/zero", "Numbers/one", "Numbers/two", "Numbers/three", "Numbers/four" };
         public static int manaCount = 0;
 
         /*
@@ -216,12 +216,12 @@ namespace Assets.unity_code
                         unityCard.current_rotation += unityCard.rotation_rate;
                     }
                 }
-                if (manaChanged)
-                {
-                    manaChanged = false;
-                    UnityGame.number.GetComponent<SpriteRenderer>().sprite =
+            }
+            if (manaChanged)
+            {
+                manaChanged = false;
+                UnityGame.number.GetComponent<SpriteRenderer>().sprite =
                         Resources.Load<Sprite>(UnityGame.numbers[UnityGame.manaCount]);
-                }
             }
         }
     }

@@ -66,13 +66,6 @@ namespace Assets.unity_code
                     pos.y = pos.y + 5;
                     BoardCard.transform.position = pos;
                     played = true;
-                    if (cardType == CardType.Land)
-                    {
-                        UnityGame.manaChanged= true;
-                        UnityGame.manaCount++;
-                        //UnityGame.number.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(
-                        //UnityGame.numbers[UnityGame.manaCount]);
-                    }
                 }
                 else
                 if (!rotating)
@@ -86,6 +79,13 @@ namespace Assets.unity_code
                         total_rotation = 90;
                         UnityGame.manaChanged = true;
                         Debug.Log("rotated untapped mousescript!");
+                        if (cardType == CardType.Land)
+                        {
+                            UnityGame.manaChanged = true;
+                            UnityGame.manaCount++;
+                            //UnityGame.number.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(
+                            //UnityGame.numbers[UnityGame.manaCount]);
+                        }
                     }
                     else
                     {
@@ -93,6 +93,13 @@ namespace Assets.unity_code
                         rotation_rate = -net_rotation_rate;
                         current_rotation = 0;
                         total_rotation = -90;
+                        if (cardType == CardType.Land)
+                        {
+                            UnityGame.manaChanged = true;
+                            UnityGame.manaCount--;
+                            //UnityGame.number.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(
+                            //UnityGame.numbers[UnityGame.manaCount]);
+                        }
                         Debug.Log("rotated tapped mousescript!");
                     }
                     rotating = true;
